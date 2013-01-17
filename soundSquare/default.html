@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <title>soundSquare</title>
+
+    <!-- WinJS 参照 -->
+    <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+
+    <link href="/resources/css/general.css" rel="stylesheet" />
+
+    <script charset="utf-8" src="/js/jquery-1.8.0-windows8-ready.js"></script>
+    <script charset="utf-8" src="/resources/js/dateformat.js"></script>
+    <script charset="utf-8" src="/resources/js/easeljs/lib/easeljs-0.5.0.min.js"></script>
+    <script charset="utf-8" src="/resources/js/tweenjs/lib/tweenjs-0.3.0.min.js"></script>
+    <script charset="utf-8" src="/resources/js/soundjs/lib/soundjs-0.3.0.min.js"></script>
+
+    <!--jQueryライブラリの読み込み-->
+    <script charset="utf-8" src="/resources/js/jquery.activity-indicator-1.0.0.min.js"></script>
+    <script charset="utf-8" src="/resources/js/jquery.extend.js"></script>
+    <script charset="utf-8" src="/resources/js/jquery.easing-1.3.js"></script>
+    <script charset="utf-8" src="/resources/js/jquery.transit.js"></script>
+
+    <script charset="utf-8" src="/resources/js/lib.stage.js"></script>
+    
+    <script charset="utf-8" src="/resources/js/app.config.js"></script>
+    <script charset="utf-8" src="/resources/js/index.js"></script>
+    <script charset="utf-8" src="/resources/js/app.ajax.js"></script>
+    <script charset="utf-8" src="/resources/js/app.loader.js"></script>
+    <script charset="utf-8" src="/resources/js/app.facebook.js"></script>
+    <script charset="utf-8" src="/resources/js/app.modal.js"></script>
+    <script charset="utf-8" src="/resources/js/app.titlebar.js"></script>
+    <script charset="utf-8" src="/resources/js/app.button.js"></script>
+    <script charset="utf-8" src="/resources/js/app.block.js"></script>
+    <script charset="utf-8" src="/resources/js/app.statusbar.js"></script>
+    <script charset="utf-8" src="/resources/js/app.player.js"></script>
+    <script charset="utf-8" src="/resources/js/app.setting.js"></script>
+    <script charset="utf-8" src="/resources/js/app.tutorial.js"></script>
+    
+    <script charset="utf-8" src="/resources/js/app.main.js"></script>
+    <script charset="utf-8" src="/resources/js/app.like.js"></script>
+    <script charset="utf-8" src="/resources/js/app.register.js"></script>
+
+    <!-- soundSquare 参照 -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/js/default.js"></script>
+
+    <!-- WinJS用 参照 -->
+    <script charset="utf-8" src="/js/fb.js"></script>
+    <script charset="utf-8" src="/js/lib.stage.js"></script>
+
+    <script charset="utf-8">
+    // set global alias
+    window.FB = FBWinJS;
+
+    var app = app || {};
+    app.config = {
+        name: 'soundSquare',
+        url: 'http://soundsquare.asia',
+        baseurl: '/resources',
+        apiurl: 'http://soundsquare.asia/api',
+        screenWidth: $(window).width(),
+        screenHeight: $(window).height(),
+
+        blockWidth: 70,
+        blockCount: Math.ceil($(window).width() / 70),
+
+        fbappid: '351460961615783',
+        fbperm: 'user_about_me,email,user_activities,user_interests,user_likes,publish_actions'
+    };
+
+    </script>
+    </head>
+
+    <body>
+        <div id="fb-root"></div>
+        <div style="display: none;">
+
+            <div id="profilebar" class="titlebar">
+            </div>
+
+            <div id="titlebar" class="titlebar">
+                <div class="logo" id="logo"></div>
+            
+                <div id="notlogin" class="statusbar" style="display: none; margin-top: 6px;">
+                    <ul class="bar">
+                    <li id="tutorial" class="button">Tutorial</li>
+                    <li id="register" class="button">Register</li>
+                    <li id="settings" class="button black">Settings</li>
+                    </ul>
+                </div>
+                
+                <div id="login" class="statusbar" style="display: none; margin-top: 6px;">
+                    <ul class="bar">
+                    <li id="likes" class="button">Likes</li>
+                    <li style="display: none;" id="friends" class="button">Friends</li>
+                    <li id="settings" class="button black">Settings</li>
+                    </ul>
+                </div>
+            
+            </div>
+
+            <div id="register-win" class="register modal-win">
+                <div style="width: 320px; text-align: center; margin: 20px auto;">
+                    <div class="logo"></div>
+                    <p id="message">Please connect with Facebook to be a member!</p>
+                    <div id="button" class="button facebook"></div>
+                </div>
+            </div>
+
+            <div id="about-win">
+                <div style="padding: 20px 0;">
+                    <div class="logo"></div>
+                    <p>by Jamlogic, INC. + techGarage Fukuoka</p>
+                </div>
+            </div>
+
+            <div id="tutorial-win">
+                <div class="step1">
+                    <div class="logo"></div>
+                    <p>Please connect with Facebook to be a member!</p>
+                    <div class="button facebook"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </body>
+</html>

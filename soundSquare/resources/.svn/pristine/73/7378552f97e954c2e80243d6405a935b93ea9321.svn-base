@@ -1,0 +1,100 @@
+var app = app || {};
+app.register = {};
+
+
+
+(function(){
+
+    var base = null;
+
+
+    app.register.show = function(config){
+        config = config || {};
+
+        var sh = app.config.screenHeight;
+        var h = config.height;
+
+        if(!base){
+            base = app.register.create(config || {});
+        }
+
+        base.show();
+        base.css('width', config.width);
+        base.css('height', config.height);
+            
+        base.css('top', ((sh - h) / 2) < 0 ? 0 : ((sh - h) / 2));
+        base.css('left', 0);
+
+        var m = app.modal.show();
+        m.on('click', function(){
+            app.register.hide();
+            return;
+        });
+        return base;
+    }
+
+
+
+    app.register.hide = function(){
+        app.modal.hide();
+        if(base) base.hide();
+        return;
+    }
+
+
+
+    /**
+     * ログイン後・継続ログインしている場合に実行
+     */
+    app.register.complete = function(res){
+        app.ajax.request({
+            url: app.config.apiurl + "/index.php/user/me",
+            success: function(res){
+                var res = $.parseJSON(res);
+
+                if(!res.success || !res.result){
+                    return;
+                }
+
+                app.register.hide();
+
+                var v = res.result[0];
+
+                //ステータスバーの表示
+                app.statusbar.show({
+                    image: v['imageurl'],
+                    text: String.format('Welcome back, {0}!', v['name'])
+                });
+                return;
+            }
+        });
+    
+        return;
+    }
+
+
+
+    /**
+     * ログインウィンドウを作成 
+     */
+    app.register.create = function(config){
+        config = config || {};
+
+        var r = $('#register').appendTo($(document.body));
+        
+        $('#button', $(r)).on('click', function(e){
+            app.facebook.login({
+                callback: function(res){
+                    app.register.complete(res);
+                    return;
+                }
+            });
+            return;
+        });
+        
+        return r;
+    }
+
+
+
+})();

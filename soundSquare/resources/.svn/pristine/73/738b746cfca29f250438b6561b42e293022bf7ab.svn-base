@@ -1,0 +1,128 @@
+var app = app || {};
+app.setting = {};
+
+
+
+(function(){
+
+    var cn = null;
+
+
+    app.setting.show = function(config){
+        config = config || {};
+
+        if(!cn){
+            cn = app.setting.create(config);
+            cn.appendTo($(document.body));
+            cn.animate({top: 0, left: app.config.screenWidth}, 0);
+        }
+
+        var m = app.modal.show({
+            color: 'transparent'
+        });
+        m.on('click', function(){
+            app.modal.hide();
+            app.setting.hide();
+            return;
+        });
+        cn.animate({top: 0, left: app.config.screenWidth - cn.width()}, 100);
+        return;
+    }
+
+
+
+    app.setting.hide = function(){
+        if(!cn) return;
+        cn.animate({top: 0, left: app.config.screenWidth}, 100, function(){
+            cn.remove();
+            cn = null;
+            return;
+        });
+    }
+
+
+
+    /**
+     * 設定画面を描画 
+     */
+    app.setting.create = function(config){
+        config = config || {};
+        
+        var el = $('<div class="setting"/>');
+        $('<div class="bg" />').appendTo(el);
+
+        //ログイン情報を表示
+        var bd = $('<div class="body"/>');
+
+        var pr = $('<div class="profile" />').appendTo(bd);
+
+        //ユーザー情報から情報を取得して表示
+        if(app.register.isLogin()){
+            app.register.getUser({
+                success: function(res){
+                    if(!res.success || !res.result){
+                        return;
+                    }
+                    
+                    var r = res.result[0] || {};
+
+                    var bl = $('<div class="left" />').appendTo(pr);
+                    var img = $('<img />').appendTo(bl);
+                    img.attr('src', r.imageurl);
+
+                    var name = $('<div class="main" />');
+                    name.text(r.name);
+                    name.appendTo(pr);
+
+                    return;
+                },
+                scope: this
+            });
+        }
+
+        var p = {
+            about: 'このサービスについて',
+            invite: '友達を誘う',
+            logout: 'ログアウト'
+        };
+
+        var ul = $('<ul class="list"/>').appendTo(bd);
+        $.each(p, function(k, v){
+            var li = $('<li></li>').appendTo(ul);
+            li.text(v);
+
+            li.css('cursor', 'pointer');
+            li.on('click', function(e){
+                app.modal.hide();
+                app.setting.hide();
+
+                switch(k){
+                    case 'logout':
+                        app.register.logout();
+                        break;
+
+                    case 'invite':
+                        app.facebook.send({
+                            name: app.config.name,
+                            link: app.config.url
+                        });
+                        break;
+
+                    case 'about':
+                        app.modal.window({
+                            tpl: $('#about')
+                        });
+                        break;
+                }
+            });
+        });
+
+        bd.appendTo(el);
+        el.width(config.width);
+        el.height(config.height);
+        return el;
+    }
+
+
+
+})();

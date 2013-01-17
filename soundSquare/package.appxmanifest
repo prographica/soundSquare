@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="e1f18231-1ab1-41b6-8b98-aa60e00ad6a2" Version="1.0.0.0" Publisher="CN=prographica" />
+  <Properties>
+    <DisplayName>soundSquare</DisplayName>
+    <PublisherDisplayName>soundSquare.asia</PublisherDisplayName>
+    <Logo>images\50x50.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" StartPage="default.html">
+      <VisualElements DisplayName="soundSquare" Logo="images\150x150.png" SmallLogo="images\30x30.png" Description="soundSquare" ForegroundText="light" BackgroundColor="#000000" ToastCapable="true">
+        <DefaultTile ShowName="logoOnly" WideLogo="images\310x150.png" ShortName="soundSquare" />
+        <SplashScreen Image="images\620x300.png" BackgroundColor="#000000" />
+        <InitialRotationPreference>
+          <Rotation Preference="landscape" />
+          <Rotation Preference="landscapeFlipped" />
+        </InitialRotationPreference>
+      </VisualElements>
+      <ApplicationContentUriRules>
+        <Rule Match="http://soundsqare.asia" Type="include" />
+      </ApplicationContentUriRules>
+      <Extensions>
+        <Extension Category="windows.backgroundTasks" StartPage="default.html">
+          <BackgroundTasks>
+            <Task Type="audio" />
+          </BackgroundTasks>
+        </Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>

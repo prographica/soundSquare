@@ -1,0 +1,22 @@
+var app = app || {};
+app.ajax = {};
+
+
+(function(){
+
+
+
+    /**
+     * 通信系ラッパー 
+     */
+    app.ajax.request = function(config){
+        config = config || {};
+        config.type = config.type ? config.type : 'POST';
+
+        $.ajax(config || {});
+        return;
+    }
+
+
+
+})();

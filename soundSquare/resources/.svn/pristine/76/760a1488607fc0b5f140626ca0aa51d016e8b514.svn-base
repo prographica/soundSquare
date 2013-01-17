@@ -1,0 +1,92 @@
+var app = app || {};
+app.titlebar = {};
+
+
+
+(function(){
+
+    var cn = null;
+
+
+    app.titlebar.show = function(config){
+        config = config || {};
+
+
+        //タイトルの表示
+        if(!cn){
+            cn = app.titlebar.create(config);
+
+            cn.css('opacity', 0);
+            cn.animate({
+                opacity: 1
+            }, 800, null, function(){
+                if($.isFunction(config.callback)){
+                    config.callback.call(config.scope || this);
+                } 
+                return;
+            });
+            
+            $('#register', cn).css('opacity', 0);
+            $('#tutorial', cn).css('opacity', 0);
+
+            $('#logo', cn).animate({top: -100}, 0).animate({top: 0}, 800, 'easeOutBounce', function(){
+                $('#register', cn).delay(300).animate({opacity: 1}, 500, 'easeOutBounce');
+                $('#tutorial', cn).animate({opacity: 1}, 500, 'easeOutBounce');
+            });
+            return;
+        }else{
+            cn.animate({
+                top: 0 
+            }, 400);
+        }
+
+        return cn;
+    }
+
+
+
+    app.titlebar.hide = function(config)
+    {
+        config = config || {};
+
+        var title = cn;
+        if(!cn) return cn;
+
+        cn.animate({
+            top: -200
+        }, 400);
+    }
+
+
+
+
+    /**
+     * タイトルを表示 
+     */
+    app.titlebar.create = function(config){
+        config = config || {};
+
+        var w = config.width;
+        var h = config.height;
+
+        var t = $('#titlebar');
+        t.css('width', w);
+        t.css('height', h);
+        
+        $('#register', t).on('click', function(){
+            var sh = app.config.screenHeight;
+            var h = 220;
+
+            var win = app.register.show({
+                width: app.config.screenWidth,
+                height: h
+            });
+            return;
+        });
+
+        t.appendTo($(document.body));
+        return t;
+    }
+
+
+})();

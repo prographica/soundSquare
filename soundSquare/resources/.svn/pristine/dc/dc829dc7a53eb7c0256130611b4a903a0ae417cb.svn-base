@@ -1,0 +1,39 @@
+var app = app || {};
+app.modal = {};
+
+
+(function(){
+    var base = null;
+
+
+
+    /**
+     * モーダルを表示 
+     */
+    app.modal.show = function(){
+        base = app.modal.create(); 
+        base.fadeIn(100);
+        return base;
+    }
+
+
+    /**
+     * モーダルを非表示 
+     */
+    app.modal.hide = function(){
+        if(!base) return;
+        base.fadeOut(100);
+        return;
+    }
+
+
+    /**
+     * モーダルを生成 
+     */
+    app.modal.create = function(){
+        return $('<div class="modal-bg" />').appendTo($(document.body));
+    }
+
+
+
+})();

@@ -1,0 +1,40 @@
+
+/**
+ * 子供から特定のIDのものを探す 
+ */
+$.extend({
+    findChild: function(id, c){
+        var f = null;
+
+        $.each(c.children, function(k, v){
+            if(v.id === id){
+                f = v;
+                return false;
+            }
+        });
+
+        return f;
+    },
+    
+
+    time: function(d)
+    {
+        var df = new DateFormat("mm:ss");
+        var dobj = new Date();
+        dobj.setTime(d);
+        return df.format(dobj);
+    }
+
+
+});
+
+
+
+$.extend(String, {
+    format : function(format){
+         var args = Array.prototype.slice.call(arguments, 1);
+         return format.replace(/\{(\d+)\}/g, function(m, i){
+            return args[i];
+         });
+    }
+});

@@ -1,0 +1,155 @@
+var app = app || {};
+app.block = {};
+
+
+(function(){
+
+
+    /**
+     * ブロックの表示 
+     */
+    app.block.show = function(box, data)
+    {
+        var cn = app.block.create(box, data);
+        return cn;
+    }
+
+
+
+    app.block.hide = function(){
+    }
+
+
+
+    /**
+     * ブロックの生成 
+     */
+    app.block.create = function(box, data){
+        var scale = 1;
+        var sw = box.width;
+        var w = sw * scale;
+        var m = 0;
+
+        //コンテナの作成
+        var cn = new createjs.Container();
+
+        var subcn = new createjs.Container();
+        var bg = new createjs.Shape();
+        bg.x = (box.width - w) / 2;
+        bg.y = (box.height - w) / 2;
+        bg.graphics.beginFill('#000').drawRect(0,0,w,w);
+        bg.shadow = new createjs.Shadow("#000", 0, 0, 20);
+        subcn.addChild(bg);
+
+        //メインビットマップをロード
+        var b = new createjs.Bitmap(data.imageurl);
+        b.visible = false;
+        b.image.onload = function(){
+            b.scaleX = (w - m * 2) / b.image.width;
+            b.scaleY = (w - m * 2) / b.image.height;
+        
+            b.x = (box.width - w) / 2 + m;
+            b.y = (box.height - w) / 2 + m;
+            
+            init();
+            return;
+        }
+        subcn.addChild(b);
+        cn.addChild(subcn);
+
+        var infocn = _createInfobar(box, data);
+        infocn.x = sw;
+        infocn.y = 0;
+        cn.addChildAt(infocn, 0);
+
+        var init = function(){
+            //スタートの描写
+            b.alpha = 0;
+            b.visible = true;
+            
+            createjs.Tween.get(b).to({alpha: 1}, 300);
+        }
+        return cn;
+    }
+
+
+
+    _createInfobar = function(box, data){
+        var sw = box.width;
+
+        //情報ウィンドウの表示
+        var cn = new createjs.Container();
+        var bg = new createjs.Shape();
+        bg.graphics.beginFill('#000').drawRect(0, 0, sw * 2, sw);
+        cn.addChildAt(bg);
+
+        //サブコンテナの用意
+        var subcn = new createjs.Container();
+        subcn.x = 15;
+        subcn.y = 10;
+
+        //titleの表示
+        var title = new createjs.Text(data.name || "No title", "bold 12px Arial", "#FFF");
+        subcn.addChild(title);
+        
+        //artistの表示
+        var artist = new createjs.Text(data.artist_name || "No artist", "normal 10px Arial", "#FFF");
+        artist.y = 14;
+        subcn.addChild(artist);
+        
+        //categoryの表示
+        var cat = new createjs.Text(data.category_name || "No category", "normal 10px Arial", "#FFF");
+        cat.y = 26;
+        subcn.addChild(cat);
+        
+        var bt = app.button.create({text: "Like", size: 20, width: 70});
+        bt.x = (sw * 2) - 70 - 70 - 1 - 15;
+        bt.y = (sw) - 24 - 10;
+        bt.onClick = function(){
+            app.block.addLike(data);
+            return;
+        };
+        subcn.addChild(bt);
+
+        var bt = app.button.create({text: "Buy", size: 20, width: 70});
+        bt.x = (sw * 2) - 70 - 15;
+        bt.y = (sw) - 24 - 10;
+        bt.onClick = function(){
+            window.open(data.page_url);
+            return;
+        };
+        subcn.addChild(bt);
+
+        cn.addChild(subcn);
+        return cn;
+    }
+
+
+
+    /**
+     * お気に入りに登録 
+     */
+    app.block.addLike = function(data){
+        app.ajax.request({
+            url: app.config.apiurl + "/index.php/user/like",
+            data: {
+                songid: data.id
+            },
+            success: function(res){
+                var res = $.parseJSON(res);
+
+                app.statusbar.show({
+                    image: data.imageurl,
+                    text: String.format('{0}をお気に入りに登録しました', data.name),
+                    duration: 5000
+                });
+                return;
+            }
+        });
+
+        return;
+    }
+
+
+
+})();

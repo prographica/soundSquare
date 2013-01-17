@@ -1,0 +1,570 @@
+var app = app || {};
+app.stage = {};
+
+
+(function(){
+    var stage = null;
+    var main = null;
+
+    var count = 17;
+
+    var stagex = 1024;
+    var stagey = 768;
+    var w = Math.ceil(stagex / count);
+
+    var box = {};
+    var selectbox = {};
+
+    var boxinfo = {};
+        
+    var curx = null;
+    var cury = null;
+    var down = false;
+
+    var player = null;
+
+    var block = null;
+
+    /**
+     * st object stage
+     * mi object main container
+     */
+    app.stage.init = function(config){
+        config = config || {};
+        stage = config.stage;
+        main = config.main;
+    
+        stagex = config.stageWidth;
+        stagey = config.stageHeight;
+
+        count = config.blockCount;
+        w = config.blockWidth;
+
+        stage.onMouseMove = function(c){
+            if(down === false) return;
+            
+            var px = Math.ceil(c.stageX / w) - 1;
+            var py = Math.ceil(c.stageY / w) - 1;
+
+            if(curx === px && cury === py){
+                return;
+            }
+
+            var id = ''+px+'-'+py;
+            app.stage.unselect();
+            app.stage.select(id);
+ 
+            selectbox[id] = {
+                x: px,
+                y: py,
+                width: w,
+                height: w,
+                c: box[id]
+            };
+
+            if(curx !== null && cury !== null){
+                app.stage.hilight(''+curx+'-'+cury);
+            }
+
+            curx = px, cury = py;
+            stage.update();
+            return;
+        }
+
+	    //マウスがアップされたときに実行
+        stage.onMouseUp = function(c){
+            if(down === false) return;
+
+            //最後に選択されたものを取得
+            var cur = null;
+            $.each(selectbox, function(k, v){
+                cur = k;
+                return;
+            });
+
+            if(cur){
+                //色をつける
+                app.stage.hilight(cur, true);
+            }
+            
+            down = false;
+            app.stage.unselect();
+            app.stage.play({
+                callback: function(){
+                    app.titlebar.show();
+                    return;
+                },
+                scope: this
+            });
+
+            return;
+        }
+
+	    //タイトルの表示
+        var title = app.titlebar.show({
+            width: w * 5,
+            height: w * 2,
+            callback: function(){
+                app.stage.load();
+                return;
+            },
+            scope: this
+        });
+
+        return;
+    }
+
+
+
+    /**
+     * 音楽を再生 
+     */
+    app.stage.play = function(config){
+        config = config || {};
+        var list = [];
+
+        $.each(selectbox, function(k, v){
+            v.id = k;
+            list.push(v);
+        });
+
+        if(list.length == 0){
+            app.titlebar.show();
+            stage.update();
+            return;
+        }
+
+        var dir = null;
+        var play = function(i){
+            player = null;
+
+            var n = list[i + 1];
+            var c = list[i];
+
+            //次がない場合（終了）
+            if(!c){
+                if($.isFunction(config.callback)){
+                    config.callback.call(config.scope || this);
+                }
+                return;
+            }
+            
+            var info = boxinfo[c.id];
+            var b = box[c.id];
+
+            //次の位置を照会
+            if(n){
+                //右に進む
+                if(c.x < n.x && c.y == n.y){
+                    dir = 'r';
+                }
+                //右に進む
+                else if(c.x > n.x && c.y == n.y){
+                    dir = 'l';
+                }
+                //下に進む
+                else if(c.x == n.x && c.y < n.y){
+                    dir = 'd';
+                }
+                //上に進む
+                else if(c.x == c.y && c.y > n.y){
+                    dir = 'u';
+                }
+            }else if(dir === null){
+                dir = 'r';
+            }
+
+            //ステータスバーの表示
+            app.statusbar.hide();
+            var prepare = app.statusbar.show({
+                //image: info['imageurl'],
+                activity: true,
+                text: String.format('再生の準備中...'),
+                duration: 5000
+            });
+
+            player =  new Audio(info.previewurl);
+            player.addEventListener('ended', function(){
+                play(i+1);
+            });
+
+            player.addEventListener('canplaythrough', function(){
+                player.play();
+                return;
+            });
+
+            player.addEventListener('play', function(){
+                app.statusbar.hide();
+
+                //ステータスバーの表示
+                app.statusbar.show({
+                    image: info['imageurl'],
+                    text: String.format(
+                        '<strong>{0}</strong>&nbsp;{1}',
+                        info['name'], info['artist_name']
+                    ),
+                    duration: 5000
+                });
+            });
+            
+            var p = ($.findChild('player', b));
+            p.visible = true;
+
+            switch(dir){
+                case 'r':
+                    p.scaleX = 0;
+                    p.scaleY = 1;
+                    p.x = 0;
+                    p.y = 0;
+                    createjs.Tween.get(p).to({scaleX: 1}, info.duration);
+                    break;
+                case 'l':
+                    p.scaleX = 0;
+                    p.scaleY = 1;
+                    p.x = w;
+                    p.y = 0;
+                    createjs.Tween.get(p).to({scaleX: -1}, info.duration);
+                    break;
+                case 'd':
+                    p.scaleX = 1;
+                    p.scaleY = 0;
+                    p.x = 0;
+                    p.y = 0;
+                    createjs.Tween.get(p).to({scaleY: 1}, info.duration);
+                    break;
+                case 'u':
+                    p.scaleX = 1;
+                    p.scaleY = 0;
+                    p.x = 0;
+                    p.y = w;
+                    createjs.Tween.get(p).to({scaleY: -1}, info.duration);
+                    break;
+            }
+            
+            stage.update();
+            return;
+        }
+            
+        play(0);
+
+        return;
+    }
+
+
+
+    /**
+     * セレクトされてたものをクリア 
+     */
+    app.stage.clear = function()
+    {
+        if(player){
+            player.pause();
+            player = null;
+        }
+
+        $.each(box, function(k, v){
+            ($.findChild('selector', v)).visible = false;
+            ($.findChild('player', v)).visible = false;
+            ($.findChild('time', v)).visible = false;
+        });
+
+        stage.update();
+    }
+
+
+
+    /**
+     * 黒い影を消す 
+     */
+    app.stage.unselect = function()
+    {
+
+        $.each(box, function(k, v){
+            ($.findChild('cover', v)).visible = false;
+        });
+
+        stage.update();
+    }
+
+
+
+    app.stage.hilight = function(id, sel)
+    {
+        var bx = $.findChild('selector', box[id]);
+        bx.alpha = 0;
+        bx.visible = true;
+
+        createjs.Tween.get(bx).to({alpha: 0.5}, 500);
+        
+        var count = 0;
+        $.each(selectbox, function(k, v){
+            count++;
+        });
+
+        //合計再生時間を取得
+        var t = 0;
+        var r = 0;
+        $.each(selectbox, function(k, v){
+            if(sel !== true && (r == (count - 1))){
+                return false;
+            }
+            
+            t+= parseInt(boxinfo[k].duration);
+            r++;
+            return;
+        });
+        
+        var bx = $.findChild('time', box[id]);
+        bx.alpha = 1;
+        bx.text = $.time(t);
+        bx.visible = true;
+        
+        //return bx;
+    }
+
+
+
+    app.stage.select = function(id){
+	var tmp = id.split('-');
+	var x = parseInt(tmp[0]), y = parseInt(tmp[1]);
+
+        $.each(box, function(k, v){
+            if(k === ''+x+'-'+y){
+                return;
+            }
+            
+            //上の表示
+            if(k === ''+(x - 1)+'-'+y){
+                return;
+            }
+            
+            //下の表示
+            if(k === ''+(x + 1)+'-'+y){
+                return;
+            }
+            
+            //左の表示
+            if(k === ''+x+'-'+(y - 1)){
+                return;
+            }
+            
+            //右の表示
+            if(k === ''+x+'-'+(y + 1)){
+                return;
+            }
+            
+            v.children[2].visible = true;
+        });
+
+        stage.update();
+    };
+
+
+
+    app.stage.load = function(){
+        
+        //loaderの初期化
+        loader = app.loader.init({
+            target: $(document.body)
+        });
+        loader.show();
+
+        app.ajax.request({
+            type: "GET",
+            url: app.config.apiurl + "/index.php/song/feed",
+            data: "limit=200",
+            success: function(res){
+                var res = $.parseJSON(res);
+                app.stage.draw(res.result);
+                
+                loader.hide();
+                return;
+            },
+            failure: function(){
+                loader.hide();
+                return;
+            }
+        });
+    }
+
+
+
+    app.stage.draw = function(res)
+    {
+        var m = (stagex / w);
+
+        var rand = [];
+
+        var c = 0;
+        var r = 0;
+        $.each(res, function(k, v){
+            if(!v.imageurl){
+                return;
+            }
+
+            var d = new createjs.Container();
+            d.x = (w * c);
+            d.y = (w * r);
+            d.alpha = 0;
+
+            //クリックエリアの作成
+            var a = new createjs.Shape();
+            a.graphics.beginFill('#000').drawRect(0,0,w,w);
+            d.addChild(a);
+    
+            //イメージの作成
+            //位置の指定　
+            var b = new createjs.Bitmap(v.imageurl);
+
+            //位置の調整
+            b.regX = 0;
+            b.regY = 0;
+
+            b.image.onload = function() {
+                b.scaleX = w / b.image.width;
+                b.scaleY = w / b.image.height;
+
+                stage.update();
+            };
+            d.addChild(b);
+            
+            //隠す画像[1]
+            var s = new createjs.Shape();
+            s.id = 'cover';
+            s.graphics.beginFill('#000').drawRect(0,0,w,w);
+            s.visible = false;
+            s.alpha = 0.8;
+            d.addChild(s);
+            
+            //選択画像[2]
+            var s = new createjs.Shape();
+            s.id = 'selector';
+            s.graphics.beginFill('#007FFF').drawRect(0,0,w,w);
+            s.visible = false;
+            s.alpha = 0.5;
+            d.addChild(s);
+            
+            //再生画像[2]
+            var s = new createjs.Shape();
+            s.id = 'player';
+            s.graphics.beginFill('#FF0000').drawRect(0,0,w,w);
+            s.visible = false;
+            s.alpha = 0.5;
+            d.addChild(s);
+
+            //時間表示
+            var tm = new createjs.Text($.time(v.duration), "bold 12px Arial", "#FFF");
+            tm.id = 'time';
+            tm.visible = false;
+            tm.x = 3;
+            tm.y = 3;
+            d.addChild(tm);
+
+	        main.addChild(d);
+
+            var bk = '' + c + '-' + r;
+            box[bk] = d;
+            boxinfo[bk] = v;
+
+            rand.push(bk);
+
+            /**
+             * ダブルクリックをしたときに実行 
+             */
+            a.onDoubleClick = function(c){
+            }
+
+            a.onPress = function(c){
+
+                //選択されている場合はブロックを表示
+                if(selectbox[bk]){
+                    if(block){
+
+                        if(block.id == bk){
+                            return;
+                        }
+
+                        main.removeChild(block);
+                        block = null;
+                    }
+
+                    var cn = app.block.show(selectbox[bk], boxinfo[bk]);
+
+                    cn.x = selectbox[bk].c.x;
+                    cn.y = selectbox[bk].c.y;
+                    cn.id = bk;
+ 
+                    main.addChild(cn);
+                    
+                    block = cn;
+                    stage.update();
+                    return;
+                }
+                
+                if(block){
+                    main.removeChild(block);
+                    block = null;
+                    return;
+                }
+
+                app.stage.clear();
+                selectbox = {};
+                curx = null, cury = null;
+
+                app.titlebar.hide({
+                    callback: function(cn){
+                    
+                        stage.removeChild(cn);
+                        stage.update();
+                        return;
+                    } 
+                });
+
+		        app.stage.select(bk);
+                var tmp = bk.split('-');
+
+                curx = parseInt(tmp[0]), cury = parseInt(tmp[1]);
+                selectbox[bk] = {
+                    x: curx,
+                    y: cury,
+                    width: w,
+                    height: w,
+                    c: box[bk]
+                };
+                delete tmp;
+
+                //押下されている状態
+                down = true;
+                return;
+            }
+
+            if(c > m){
+                r++;
+                c = 0;
+            }else{
+                c++;
+            }
+            return;
+        });
+    
+        rand.shuffle();
+
+        $.each(rand, function(k, v){
+            createjs.Tween.get(box[v]).wait(2000 * Math.random()).to({alpha: 1, scaleX: 1, scaleY: 1}, 500, createjs.Ease.bounceInOut);
+        });
+
+        return;
+    }
+
+
+
+})();
+
+
+Array.prototype.shuffle = function(){
+    var len = this.length;
+    var ary = this.concat();
+    var res = [];
+    while(len) res.push(ary.splice(Math.floor(Math.random()*len--),1));
+    return res
+};

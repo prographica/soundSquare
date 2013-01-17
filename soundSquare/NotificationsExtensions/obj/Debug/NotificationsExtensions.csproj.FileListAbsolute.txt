@@ -1,0 +1,17 @@
+C:\Users\prographica\Visual Studio 2012\Projects\App tiles and badges sample\C#,JavaScript\NotificationsExtensions\bin\Debug\NotificationsExtensions.XML
+C:\Users\prographica\Visual Studio 2012\Projects\App tiles and badges sample\C#,JavaScript\NotificationsExtensions\bin\Debug\NotificationsExtensions.winmd
+C:\Users\prographica\Visual Studio 2012\Projects\App tiles and badges sample\C#,JavaScript\NotificationsExtensions\bin\Debug\NotificationsExtensions.pdb
+C:\Users\prographica\Visual Studio 2012\Projects\App tiles and badges sample\C#,JavaScript\NotificationsExtensions\bin\Debug\NotificationsExtensions.pri
+C:\Users\prographica\Visual Studio 2012\Projects\App tiles and badges sample\C#,JavaScript\NotificationsExtensions\obj\Debug\NotificationsExtensions.winmd
+C:\Users\prographica\Visual Studio 2012\Projects\App tiles and badges sample\C#,JavaScript\NotificationsExtensions\obj\Debug\NotificationsExtensions.pdb
+C:\Users\prographica\Visual Studio 2012\Projects\App tiles and badges sample\C#,JavaScript\NotificationsExtensions\obj\Debug\NotificationsExtensions.winmdobj
+C:\Users\prographica\Visual Studio 2012\Projects\App tiles and badges sample\C#,JavaScript\NotificationsExtensions\obj\Debug\NotificationsExtensions.compile.pdb
+C:\Users\prographica\Visual Studio 2012\Projects\App tiles and badges sample\C#,JavaScript\NotificationsExtensions\obj\Debug\priconfig.xml.intermediate
+C:\Users\prographica\Visual Studio 2012\Projects\App tiles and badges sample\C#,JavaScript\NotificationsExtensions\obj\Debug\layout.resfiles.intermediate
+C:\Users\prographica\Visual Studio 2012\Projects\App tiles and badges sample\C#,JavaScript\NotificationsExtensions\obj\Debug\resources.resfiles.intermediate
+C:\Users\prographica\Visual Studio 2012\Projects\App tiles and badges sample\C#,JavaScript\NotificationsExtensions\obj\Debug\pri.resfiles.intermediate
+C:\Users\prographica\Visual Studio 2012\Projects\App tiles and badges sample\C#,JavaScript\NotificationsExtensions\obj\Debug\priconfig.xml
+C:\Users\prographica\Visual Studio 2012\Projects\App tiles and badges sample\C#,JavaScript\NotificationsExtensions\obj\Debug\layout.resfiles
+C:\Users\prographica\Visual Studio 2012\Projects\App tiles and badges sample\C#,JavaScript\NotificationsExtensions\obj\Debug\resources.resfiles
+C:\Users\prographica\Visual Studio 2012\Projects\App tiles and badges sample\C#,JavaScript\NotificationsExtensions\obj\Debug\pri.resfiles
+C:\Users\prographica\Visual Studio 2012\Projects\App tiles and badges sample\C#,JavaScript\NotificationsExtensions\obj\Debug\LanguageQualifiers.txt
