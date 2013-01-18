@@ -68,7 +68,8 @@ app.setting = {};
         }
 
         var p = {
-            about: 'このサービスについて',
+        	about: 'このサービスについて',
+			privacy: 'プライバシーポリシー',
             invite: '友達を誘う',
             logout: 'ログアウト',
             register: '登録/ログイン'
@@ -106,6 +107,10 @@ app.setting = {};
                             tpl: $('#about-win')
                         });
                         break;
+
+                	case 'privacy':
+                		window.open(app.config.privacyurl);
+                		break;
                 }
             });
         });
@@ -142,6 +147,7 @@ app.setting = {};
             });
             
             $('#about', bd).show();
+            $('#privacy', bd).show();
             $('#invite', bd).show();
             $('#logout', bd).show();
             return;
@@ -156,6 +162,7 @@ app.setting = {};
             });
 
             $('#about', bd).show();
+            $('#privacy', bd).show();
             $('#register', bd).show();
             return;
         });

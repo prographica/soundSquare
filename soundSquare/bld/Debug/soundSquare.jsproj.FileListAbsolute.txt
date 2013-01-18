@@ -7,3 +7,7 @@ C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\bld\Deb
 C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\bld\Debug\pri.resfiles
 C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\bld\Debug\LanguageQualifiers.txt
 C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\bld\Debug\ProjectArchitectures.txt
+C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\bld\Debug\priconfig.xml.intermediate
+C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\bld\Debug\layout.resfiles.intermediate
+C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\bld\Debug\resources.resfiles.intermediate
+C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\bld\Debug\pri.resfiles.intermediate
