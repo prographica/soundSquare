@@ -47,9 +47,10 @@
     <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
     <TargetPlatformVersion>8.0</TargetPlatformVersion>
     <DefaultLanguage>ja-JP</DefaultLanguage>
-    <PackageCertificateKeyFile>soundSquare_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>soundSquare_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxPackageDir>\\psf\Home\Desktop\</AppxPackageDir>
+    <PackageCertificateThumbprint>721369487F89CA35986F1C3B5D22F073D34E0FFD</PackageCertificateThumbprint>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
@@ -72,6 +73,8 @@
     <Content Include="js\app.loader.js" />
     <Content Include="js\app.appbar.js" />
     <Content Include="js\index.js" />
+    <None Include="soundSquare_StoreKey.pfx" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="resources\css\general.css" />
     <Content Include="resources\images\appbar_arrow_right.png" />
     <Content Include="resources\images\arrow_right.png" />
@@ -80,7 +83,6 @@
     <Content Include="resources\images\nosong.png" />
     <Content Include="resources\images\pause.png" />
     <Content Include="resources\images\play.png" />
-    <Content Include="resources\index.php" />
     <Content Include="resources\js\app.ajax.js" />
     <Content Include="resources\js\app.block.js" />
     <Content Include="resources\js\app.button.js" />

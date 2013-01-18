@@ -5,18 +5,18 @@
     <WindowsUser>prographica</WindowsUser>
     <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>neutral</PackageArchitecture>
-    <RegisteredManifestChecksum>7F33F142BEE32B40C1DEB4E6CE101C01BA4D7D6E7FA8942CA89EDBC62B933040</RegisteredManifestChecksum>
-    <RegisteredPackageMoniker>e1f18231-1ab1-41b6-8b98-aa60e00ad6a2_1.0.0.0_neutral__6mfgx0w9a07nr</RegisteredPackageMoniker>
+    <RegisteredManifestChecksum>D611A32D02390CF2868C4AC55D379B7F0083FABB2FC01B020A269718F520D5DA</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>e1f18231-1ab1-41b6-8b98-aa60e00ad6a2_1.0.0.4_neutral__6mfgx0w9a07nr</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>e1f18231-1ab1-41b6-8b98-aa60e00ad6a2_6mfgx0w9a07nr!App</RegisteredUserModeAppID>
     <RegisteredPackageID>e1f18231-1ab1-41b6-8b98-aa60e00ad6a2</RegisteredPackageID>
     <RegisteredPackagePublisher>CN=prographica</RegisteredPackagePublisher>
-    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+    <RegisteredVersion>1.0.0.4</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
     <AppXManifest Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2013-01-18T06:23:03.216</Modified>
+      <Modified>2013-01-18T08:58:48.029</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -123,7 +123,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\js\index.js">
       <PackagePath>js\index.js</PackagePath>
-      <Modified>2013-01-18T08:42:07.742</Modified>
+      <Modified>2013-01-18T08:42:37.274</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\app.ajax.js">
       <PackagePath>resources\js\app.ajax.js</PackagePath>
@@ -267,7 +267,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2013-01-18T06:23:03.043</Modified>
+      <Modified>2013-01-18T08:58:47.948</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

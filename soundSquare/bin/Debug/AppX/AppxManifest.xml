@@ -7,7 +7,7 @@
 
     パッケージ マニフェスト ファイルの詳細については、http://go.microsoft.com/fwlink/?LinkID=241727 を参照してください
   -->
-  <Identity Name="e1f18231-1ab1-41b6-8b98-aa60e00ad6a2" Version="1.0.0.0" Publisher="CN=prographica" ProcessorArchitecture="neutral" />
+  <Identity Name="e1f18231-1ab1-41b6-8b98-aa60e00ad6a2" Version="1.0.0.4" Publisher="CN=prographica" ProcessorArchitecture="neutral" />
   <Properties>
     <DisplayName>soundSquare</DisplayName>
     <PublisherDisplayName>soundSquare.asia</PublisherDisplayName>

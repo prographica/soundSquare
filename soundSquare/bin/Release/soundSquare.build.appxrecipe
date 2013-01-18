@@ -13,6 +13,15 @@
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\css\general.css">
+      <PackagePath>css\general.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\css\default.css">
+      <PackagePath>css\default.css</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\css\general.css">
+      <PackagePath>resources\css\general.css</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\default.html">
       <PackagePath>default.html</PackagePath>
     </AppxPackagedFile>
@@ -74,6 +83,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\js\lib.stage.js">
       <PackagePath>js\lib.stage.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\js\app.loader.js">
+      <PackagePath>js\app.loader.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\js\app.appbar.js">
+      <PackagePath>js\app.appbar.js</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\js\index.js">
+      <PackagePath>js\index.js</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\app.ajax.js">
       <PackagePath>resources\js\app.ajax.js</PackagePath>
@@ -170,12 +188,6 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\tweenjs\lib\tweenjs-0.3.0.min.js">
       <PackagePath>resources\js\tweenjs\lib\tweenjs-0.3.0.min.js</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\css\default.css">
-      <PackagePath>css\default.css</PackagePath>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\css\general.css">
-      <PackagePath>resources\css\general.css</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\index.php">
       <PackagePath>resources\index.php</PackagePath>
