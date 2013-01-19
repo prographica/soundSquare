@@ -103,7 +103,7 @@ app.modal = {};
                 var inner = $(
                     '<div style="text-align: center; margin: 0 auto;"/>'
                 );
-                inner.width(300);
+                inner.width(config.width || 300);
                 $(config.tpl).clone().appendTo(inner);
 
                 inner.appendTo(base);

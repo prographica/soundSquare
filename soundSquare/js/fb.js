@@ -113,6 +113,8 @@
                     + '&redirect_uri=' + encodeURIComponent(redirectUri)
                     + '&client_id=' + FB.options('appId');
 
+            console.log(loginUrl);
+
             try {
 
                 Windows.Security.Authentication.Web.WebAuthenticationBroker.authenticateAsync(
@@ -140,6 +142,8 @@
 
                         // set it as the default access token.
                         FB.setAccessToken(qs.access_token);
+
+                        console.log(qs.access_token);
 
                         // save it in local storage so can access it later
                         localStorage.setItem('fb_access_token', FB.getAccessToken());

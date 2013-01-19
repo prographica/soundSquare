@@ -50,29 +50,6 @@ app.facebook = {};
 
 
 
-    if (window.WinJS) {
-        app.facebook.init = function (config) {
-
-            config = config || {};
-            appid = config.appid;
-            perm = config.permission;
-
-            FB.init({
-                appId: appid,
-                status: true, // ステータスをチェックする。
-                cookie: true, //クッキーを使えるようにする。
-                xfbml: true  //XFBMLを使えるようにする。
-            });
-
-            if ($.isFunction(config.callback)) {
-                config.callback.call(config.scope || this, { status: 'disconnected'});
-            }
-            return;
-        };
-    }
-
-
-
 
     /**
      * ログインステータスを取得 
