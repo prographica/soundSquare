@@ -1,0 +1,854 @@
+﻿var lib = lib || {};
+
+
+/**
+ * http://www.atmarkit.co.jp/fwcr/design/benkyo/html5appli11/01.html 
+ */
+(function(){
+	"user strict";
+
+
+    lib.stage = function(config){
+        config = config || {};
+        
+        this.stagex = config.stageWidth || app.config.screenWidth;
+        this.stagey = config.stageHeight || app.config.screenHeight;
+
+        this.count = config.blockCount || app.config.blockCount;
+        this.w = config.blockWidth || app.config.blockWidth;
+
+        //無視するコマを決める
+        var o = config.omit || [];
+        var om = {};
+        $.each(o, function(k, v){
+            om[v] = true;
+        });
+        this.omit = om;
+
+        this.canvas = $('<canvas id="'+config.id+'"/>').appendTo($(document.body));
+        this.canvas.attr('width', this.stagex);
+        this.canvas.attr('height', this.stagey);
+
+        //共通処理
+        //リスナーの処理
+        var _s = this;
+
+        $.each(config.listeners || {}, function(k, v){
+            _s.canvas.bind(k, function(){
+
+                var b = [_s];
+                $.each(arguments, function(k, v){
+                    if(k == 0) return;
+                    b.push(v);
+                    return;
+                });
+                
+                v.apply(config.scope || this, b);
+                return;
+            });
+        });
+ 
+        this.stage = new createjs.Stage(config.id);
+        this.stage.enableMouseOver(10);
+        createjs.Touch.enable(this.stage);
+        createjs.Ticker.addListener(this.stage);
+
+        //メインコンテナの作成
+        this.main = new createjs.Container();
+        this.stage.addChild(this.main);
+        
+        this.box = {};
+        this.selectbox = {};
+
+        this.boxinfo = {};
+    
+        this.curx = null;
+        this.cury = null;
+        this.down = false;
+
+        this.player = null;
+
+        this.block = null;
+
+        this.stage.onMouseMove = function(c){
+            if(_s.down === false) return;
+    
+            //現在の操作位置
+            var px = Math.ceil(c.stageX / _s.w) - 1;
+            var py = Math.ceil(c.stageY / _s.w) - 1;
+
+            //同じ箇所をおしている場合は、終了
+            if(_s.curx === px && _s.cury === py){
+                _s.curx = px;
+                _s.cury = py;
+                return;
+            }
+
+            //IDを作成
+            var id = ''+px+'-'+py;
+
+            //情報がない場合は終了
+            if(!_s.box[id]){
+                return;
+            }
+
+            _s.select(id);
+ 
+            _s.selectbox[id] = {
+                x: px,
+                y: py,
+                width: _s.w,
+                height: _s.w,
+                c: _s.box[id]
+            };
+
+            if(_s.curx !== null && _s.cury !== null){
+                _s.hilight(''+_s.curx+'-'+_s.cury);
+            }
+
+            _s.curx = px, _s.cury = py;
+            return;
+        };
+
+	    //マウスがアップされたときに実行
+        this.stage.onMouseUp = function(c){
+            
+            //何もクリックされていない時は終了
+            if(_s.down === false) return;
+
+            //最後に選択されたものを取得
+            var cur = null;
+            $.each(_s.selectbox, function(k, v){
+                cur = k;
+                return;
+            });
+
+            //色をつける
+            if(cur){
+                _s.hilight(cur, true);
+            }
+            
+            _s.down = false;
+            _s.unselect();
+
+            //再生を実行
+            _s.canvas.trigger('blockmouseup');
+            return;
+        }
+
+        //初回準備ができたことを通知
+        this.canvas.trigger('init', this);
+
+		//アクティブなステージとして記録
+        _currentStage = this;
+        return;
+    }
+
+
+
+    lib.stage.prototype.isPlaying = function () {
+    	if (!this.player) {
+    		return false;
+    	}
+
+    	if (this.player.isPlaying) {
+    		return true;
+    	}
+
+    	return false;
+    }
+
+
+    /**
+     * 音楽を再生 
+     */
+    lib.stage.prototype.play = function(config){
+        config = config || {};
+        var list = [];
+
+        if (this.player) {
+			
+        	if (this.player.isPlaying) {
+        		return;
+        	}
+
+        	this.player.play();
+            return;
+        }
+
+        $.each(this.selectbox, function(k, v){
+            v.id = k;
+            list.push(v);
+        });
+
+        if(list.length == 0){
+            this.canvas.trigger('complete');
+            this.player = null;
+            return;
+        }
+
+        var _s = this;
+        var dir = null;
+        var play = function(i){
+            
+            if(_s.player){
+                delete _s.player;
+                _s.player = null;
+            }
+            
+
+            var n = list[i + 1];
+            var c = list[i];
+
+            //次がない場合（終了）
+            if(!c){
+                _s.canvas.trigger('complete');
+                this.player = null;
+                return;
+            }
+
+            //オフラインの場合は実行しない
+            if(!navigator.onLine){
+                app.modal.alert({
+                    message: app.error.offline
+                });
+                return;
+            }
+
+            var info = _s.boxinfo[c.id];
+            var b = _s.box[c.id];
+
+            //次の位置を照会
+            if(n){
+                //右に進む
+                if(c.x < n.x && c.y == n.y){
+                    dir = 'r';
+                }
+                //右に進む
+                else if(c.x > n.x && c.y == n.y){
+                    dir = 'l';
+                }
+                //下に進む
+                else if(c.x == n.x && c.y < n.y){
+                    dir = 'd';
+                }
+                //上に進む
+                else if(c.x == c.y && c.y > n.y){
+                    dir = 'u';
+                }
+
+                //曖昧な位置の評価
+                else if(c.x < n.x){
+                    dir = 'r';
+                }
+                else if(c.x > n.x){
+                    dir = 'l';
+                }
+
+            }else if(dir === null){
+                dir = 'r';
+            }
+
+            _s.canvas.trigger('prepare', [info]);
+
+
+            _s.player = _s.createPlayer({
+            	data: info,
+            	list: list,
+            	listeners: {
+            		ended: function (e) {
+            			play(i + 1);
+            			return;
+            		},
+            		canplaythrough: function (e) {
+            			_s.canvas.trigger('ready', [info]);
+            			_s.player.play();
+            			return;
+            		},
+            		play: function (e) {
+            			_s.canvas.trigger('play', [info]);
+            			return;
+            		},
+            		timeupdate: function (e) {
+            			var ps = e.target;
+            			var per = (ps.currentTime / ps.duration);
+
+            			switch (dir) {
+            				case 'r':
+            					p.scaleX = per;
+            					break;
+            				case 'l':
+            					p.scaleX = per * -1;
+            					break;
+            				case 'd':
+            					p.scaleY = per;
+            					break;
+            				case 'u':
+            					p.scaleY = per * -1;
+            					break;
+            			}
+            			return;
+            		}
+            	}
+            });
+            
+            var p = ($.findChild('player', b));
+            p.visible = true;
+
+            switch(dir){
+                case 'r':
+                    p.scaleX = 0;
+                    p.scaleY = 1;
+                    p.x = 0;
+                    p.y = 0;
+                    break;
+                case 'l':
+                    p.scaleX = 0;
+                    p.scaleY = 1;
+                    p.x = _s.w;
+                    p.y = 0;
+                    break;
+                case 'd':
+                    p.scaleX = 1;
+                    p.scaleY = 0;
+                    p.x = 0;
+                    p.y = 0;
+                    break;
+                case 'u':
+                    p.scaleX = 1;
+                    p.scaleY = 0;
+                    p.x = 0;
+                    p.y = _s.w;
+                    break;
+            }
+            return;
+        }
+            
+        play(0);
+        return;
+    };
+
+
+
+	/**
+	 * プレイヤーを作成
+	 */
+    lib.stage.prototype.createPlayer = function(config){
+    	config = config || {};
+    	var data = config.data || {};
+    	var list = config.list || [];
+    	var current = config.current || 0;
+
+    	var remain = list.length - current;
+
+    	var player = new Audio(data.previewurl);
+
+    	if (config.listeners) {
+    		$.each(config.listeners, function (k, v) {
+    			player.addEventListener(k, v);
+    		});
+    	}
+
+    	return player;
+    }
+
+
+
+
+    /**
+     * セレクトされてたものをクリア 
+     */
+    lib.stage.prototype.clear = function()
+    {
+        if(this.player){
+            this.player.pause();
+            delete this.player;
+            this.player = null;
+        }
+
+    	//ブロックが表示されている場合
+        if (this.block) {
+        	this.main.removeChild(this.block);
+        	this.block = null;
+        }
+
+        $.each(this.box, function(k, v){
+            ($.findChild('selector', v)).visible = false;
+            ($.findChild('player', v)).visible = false;
+            ($.findChild('time', v)).visible = false;
+        });
+
+        this.stage.update();
+    }
+
+
+
+	/**
+	 * ハイライトさせる
+	 */
+    lib.stage.prototype.hilight = function(id, sel)
+    {
+        var bx = $.findChild('selector', this.box[id]);
+
+        if (!window.WinJS) {
+            bx.visible = true;
+            bx.alpha = 0;
+            createjs.Tween.get(bx).to({ alpha: 0.5 }, 500);
+        } else {
+            bx.visible = true;
+            bx.alpha = 0.5;
+        }
+
+        var count = 0;
+        $.each(this.selectbox, function(k, v){
+            count++;
+        });
+
+        //合計再生時間を取得
+        var t = 0;
+        var r = 0;
+        var _s = this;
+        $.each(this.selectbox, function(k, v){
+            if(sel !== true && (r == (count - 1))){
+                return false;
+            }
+
+            t+= parseInt(_s.boxinfo[k].duration);
+            r++;
+            return;
+        });
+        
+        var bx = $.findChild('time', this.box[id]);
+        bx.alpha = 1;
+        bx.text = $.time(t);
+        bx.visible = true;
+    }
+
+
+
+    /**
+     * 黒い影を消す 
+     */
+    lib.stage.prototype.unselect = function(){
+        $.each(this.box, function (k, v) {
+            ($.findChild('cover', v)).visible = false;
+        });
+
+        this._coverSelected = [];
+        return;
+    }
+
+
+
+    /**
+     * 黒い影を表示
+     */
+    lib.stage.prototype.select = function(id){
+	    var tmp = id.split('-');
+	    var x = parseInt(tmp[0]), y = parseInt(tmp[1]);
+
+        //選択されていない場合
+	    if(!this._coverSelected || this._coverSelected.length == 0){
+	        $.each(this.box, function (k, v) {
+	            ($.findChild('cover', v)).visible = true;
+	        });
+            this._coverSelected = [];
+	    }
+        //選択されている場合
+        else{
+            $.each(this._coverSelected, function(k, v){
+                ($.findChild('cover', v)).visible = true;
+                return;
+            });
+            this._coverSelected = [];
+        }
+
+        //自分の周りのみ表示
+	    for (var tx = x - 1; tx <= (x + 1); tx++){
+            
+            for (var ty = y - 1; ty <= (y + 1) ; ty++){
+	            var k = '' + tx + '-' + ty;
+	            var v = this.box[k];
+                var f = false;
+
+                if(!this.box[k]){
+                }
+	            else if(k === '' + x + '-' + y){
+                    f = true;
+                }
+	            //上の表示
+	            else if(k === '' + (x - 1) + '-' + y){
+                    f = true;
+	            }
+                //下の表示
+                else if(k === ''+(x + 1)+'-'+y){
+                    f = true;
+                }
+                //左の表示
+                else if(k === ''+x+'-'+(y - 1)){
+                    f = true;
+                }
+                //右の表示
+                else if(k === ''+x+'-'+(y + 1)){
+                    f = true;
+                }
+	        
+                if(f){
+                    ($.findChild('cover', v)).visible = false;
+	                this._coverSelected.push(v);
+                }
+            }
+	    }
+
+        return;
+    };
+
+
+
+
+    /**
+     * JSONをロード 
+     */
+    lib.stage.prototype.load = function(config){
+        config = config || (this.config || {});
+        var total = config.total ? config.total : Math.ceil(this.stagey / this.w) * (this.count + 1);
+
+        if(!config.url){
+            return;
+        }
+
+        //loaderの初期化
+        loader = app.loader.init({
+            target: $(document.body)
+        });
+        loader.show();
+
+        app.ajax.request({
+            type: "GET",
+            url: config.url,
+            data: "limit=" + total,
+            success: function(res){
+
+                //ロードされたことを通知
+                this.canvas.trigger('load');
+                this.canvas.trigger('beforerender'); 
+                this.draw(res.result);
+                this.canvas.trigger('render');
+                
+                loader.hide();
+                return;
+            },
+            failure: function(){
+                loader.hide();
+                return;
+            },
+            scope: this
+        });
+
+        this.config = config || {};
+        return;
+    }
+
+
+
+	/**
+	 * ブロックのアンロード
+	 */
+    lib.stage.prototype.unload = function (config) {
+    	config = config || {};
+    	var _s = this;
+
+    	this.clear();
+    	this.main.removeAllChildren();
+
+    	this.box = {};
+    	this.selectbox = {};
+    	this.boxinfo = {};
+
+    	return true;
+    }
+
+
+
+    /**
+     * キャンバスを描画 
+     */
+    lib.stage.prototype.draw = function(res)
+    {
+        var m = (this.stagex / this.w);
+
+        var rand = [];
+
+        var c = 0;
+        var r = 0;
+        var ic = 0;
+        var w = this.w;
+        var stage = this.stage;
+        var main = this.main;
+        var _s = this;
+        
+        //omitをresに組み込み
+        $.each(this.omit, function(k, v){
+            res.splice(k, 0, {omit: true});
+        });
+
+        $.each(res, function(k, v){
+
+            //omitに含まれている場合は、ブロックを開けて終了
+            if(v.omit){
+                if(c > m){
+                    r++;
+                    c = 0;
+                }else{
+                    c++;
+                }
+
+                ic++;
+                return;
+            }
+            
+            //イメージがなければ飛ばす
+            if(!v.imageurl){
+                return;
+            }
+
+            var d = new createjs.Container();
+            d.x = (w * c);
+            d.y = (w * r);
+            d.alpha = 0;
+
+            //クリックエリアの作成
+            var a = new createjs.Shape();
+            a.graphics.beginFill('#000').drawRect(0,0,w,w);
+            d.addChild(a);
+    
+            //イメージの作成
+            //位置の指定　
+            var b = new createjs.Bitmap(v.imageurl);
+
+            //位置の調整
+            b.regX = 0;
+            b.regY = 0;
+
+            b.image.onload = function() {
+                b.scaleX = w / b.image.width;
+                b.scaleY = w / b.image.height;
+
+                stage.update();
+                return;
+            };
+            d.addChild(b);
+            
+            //隠す画像[1]
+            var s = new createjs.Shape();
+            s.id = 'cover';
+            s.graphics.beginFill('#000').drawRect(0,0,w,w);
+            s.visible = false;
+            s.alpha = 0.8;
+            d.addChild(s);
+            $.genCache(s.id, s, d);
+            
+            //選択画像[2]
+            var s = new createjs.Shape();
+            s.id = 'selector';
+            s.graphics.beginFill('#007FFF').drawRect(0,0,w,w);
+            s.visible = false;
+            s.alpha = 0.5;
+            d.addChild(s);
+            $.genCache(s.id, s, d);
+            
+            //再生画像[2]
+            var s = new createjs.Shape();
+            s.id = 'player';
+            s.graphics.beginFill('#FF0000').drawRect(0,0,w,w);
+            s.visible = false;
+            s.alpha = 0.5;
+            d.addChild(s);
+            $.genCache(s.id, s, d);
+
+            //時間表示
+            var tm = new createjs.Text($.time(v.duration), "bold 12px Arial", "#FFF");
+            tm.id = 'time';
+            tm.visible = false;
+            tm.x = 3;
+            tm.y = 3;
+            d.addChild(tm);
+            $.genCache(s.id, s, d);
+
+	        main.addChild(d);
+
+            var bk = '' + c + '-' + r;
+            _s.box[bk] = d;
+            _s.boxinfo[bk] = v;
+
+            rand.push(bk);
+
+            /**
+             * クリックしたときに実行 
+             */
+            a.onPress = function(c){
+
+                //選択されている場合はブロックを表示
+                if(_s.selectbox[bk]){
+                    if(_s.block){
+
+                        if(_s.block.id == bk){
+                            return;
+                        }
+
+                        main.removeChild(_s.block);
+                        _s.block = null;
+                    }
+
+                    var cn = app.block.show(_s.selectbox[bk], _s.boxinfo[bk]);
+
+                    cn.x = _s.selectbox[bk].c.x;
+                    cn.y = _s.selectbox[bk].c.y;
+                    cn.id = bk;
+ 
+                    main.addChild(cn);
+                    
+                    _s.block = cn;
+                    stage.update();
+
+                    //ブロックを表示したらpause
+                    if(_s.player){
+
+                        if(_s.player.paused == false){
+                            //プレイサインの初期化
+                            app.player.sign({
+                                target: $(document.body),
+                                status: 'pause'
+                            });
+            
+                            _s.canvas.trigger('pause');
+                        }
+
+                        _s.player.pause();
+                    }
+                    return;
+                }
+
+                //ブロックが表示されている場合
+                if(_s.block){
+                    main.removeChild(_s.block);
+                    _s.block = null;
+
+                    //ブロックがない場合はplay
+                    if(_s.player){
+                        //プレイサインの初期化
+                        app.player.sign({
+                            target: $(document.body),
+                            status: 'play'
+                        });
+
+                        _s.player.play();
+                    }
+                    return;
+                }
+
+                _s.clear();
+                _s.selectbox = {};
+                _s.curx = null, _s.cury = null;
+
+		        _s.select(bk);
+                var tmp = bk.split('-');
+
+                _s.curx = parseInt(tmp[0]), _s.cury = parseInt(tmp[1]);
+                _s.selectbox[bk] = {
+                    x: _s.curx,
+                    y: _s.cury,
+                    width: w,
+                    height: w,
+                    c: _s.box[bk]
+                };
+                delete tmp;
+
+                //押下されている状態
+                _s.down = true;
+
+                _s.canvas.trigger('blockmousedown');
+                return;
+            }
+
+            if(c > m){
+                r++;
+                c = 0;
+            }else{
+                c++;
+            }
+
+            ic++;
+            return;
+        });
+    
+        rand.shuffle();
+
+        //表示
+        $.each(rand, function(k, v){
+            createjs.Tween.get(_s.box[v])
+            .wait(2000 * Math.random())
+            .to({alpha: 1, scaleX: 1, scaleY: 1}, 500, createjs.Ease.bounceInOut);
+        });
+
+        return;
+    }
+
+
+
+    /**
+     * ステージを非表示（フェードアウト）  
+     */
+    lib.stage.prototype.hide = function(config){
+        config = config || {};
+        
+        if(!config.callback){
+            return;
+        }
+
+        this.canvas.transition({scale: 0.97, opacity: 0}, function(){
+            config.callback();
+            return;
+        });
+
+        _currentStage = null;
+        return;
+    } 
+
+
+
+    /**
+     * ステージを表示
+     */
+    lib.stage.prototype.show = function(config){
+        config = config || {};
+
+        this.canvas.show();
+
+        _currentStage = this;
+        return;
+    }
+
+
+
+	/**
+	 * 現在アクティブなステージを返却
+	 */
+    var _currentStage = null;
+    lib.stage.prototype.getCurrentStage = function () {
+    	return _currentStage;
+    }
+
+
+
+})();
+
+
+
+Array.prototype.shuffle = function(){
+    var len = this.length;
+    var ary = this.concat();
+    var res = [];
+    while(len) res.push(ary.splice(Math.floor(Math.random()*len--),1));
+    return res
+};
