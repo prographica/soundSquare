@@ -13,7 +13,13 @@ app.ajax = {};
         config = config || {};
         config.type = config.type ? config.type : 'POST';
 
-        
+        //オフラインの場合は、終了
+        if (navi.onLine) {
+            if (!config.slient) {
+                app.alert('オフラインのため情報を取得することができませんでした');
+                return;
+            }
+        }
 
         $.ajax($.extend({}, config, {
             success: function(res, success, xhr){
