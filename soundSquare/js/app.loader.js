@@ -15,9 +15,9 @@ var app = app || {};
 	app.loader.create = function (config) {
 		config = config || {};
 
-		var el = $('<div class="loader"></div>');
+		var el = $('<div class="loader" />');
 		$('<div class="bg" />').appendTo(el);
-		$('<progress class="spinner win-ring win-large"/>').appendTo(el);
+		$('<progress class="spinner win-ring win-large" />').appendTo(el);
 		el.hide();
 
 		el.show = function () {

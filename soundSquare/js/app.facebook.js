@@ -52,41 +52,50 @@ app.facebook = app.facebook || {};
 
 		var t = FB.getAccessToken();
 
+		console.dir(t);
+
 		//ログイン成功
 		if (t) {
 
-			//サーバ側認証のためにTokenを送信
-			app.ajax.request({
-				url: app.config.apiurl + "/index.php/user/auth",
-				success: function (res) {
+		    //サーバ側認証のためにTokenを送信
+		    app.ajax.request({
+		        url: app.config.apiurl + "/index.php/user/auth",
+		        data: {
+                    token: t
+		        },
+		        success: function (res) {
 
-					if (!res.success) {
-						config.callback.call(config.scope || this, res);
-						return;
-					}
+		            if (!res.success) {
+		                config.callback.call(config.scope || this, {
+		                    status: 'not_authorized'
+		                });
+		                return;
+		            }
 
-					return;
-				}
-			});
+		            var res = {
+		                status: 'connected',
+		                session: {
+		                    access_token: FB.getAccessToken(),
+		                    expires: FB.getAccessTokenExpires(),
+		                }
+		            };
 
-			return;
+		            app.facebook.islogin = res;
 
-			var res = {
-				status: 'connected',
-				session: {
-					access_token: FB.getAccessToken(),
-					expires: FB.getAccessTokenExpires(),
-				}
-			};
+		            if(!$.isFunction(config.callback)) {
+		                return;
+		            }
 
-			app.facebook.islogin = res;
-
-			if (!$.isFunction(config.callback)) {
-				return;
-			}
-
-			config.callback.call(config.scope || this, res);
-			return;
+		            config.callback.call(config.scope || this, res);
+		            return;
+		        }
+		    });
+		}
+        //そもそもトークンがない場合
+		else {
+		    config.callback.call(config.scope || this, {
+                status: 'not_authorized'
+		    });
 		};
 
 		return;

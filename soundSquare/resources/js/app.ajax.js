@@ -27,7 +27,12 @@ app.ajax = {};
                 //ajaxで正しい結果が帰ってきているか確認
                 try{
                     res = $.parseJSON(res);
-                }catch(e){
+                } catch(e) {
+
+                    if(app.config.debug === true) {
+                        console.log(res);
+                    }
+
                     if(!$.isFunction(config.failure)) return;
                     config.failure.apply(config.scope || this, [{success: false}]);
                     return;
