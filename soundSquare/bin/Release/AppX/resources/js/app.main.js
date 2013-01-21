@@ -1,8 +1,16 @@
-var app = app || {};
+﻿var app = app || {};
 app.main ={};
 
 
 (function(){
+
+
+	var stage = null;
+
+
+	app.main.getCurrentStage = function () {
+		return stage.getCurrentStage();
+	}
 
 
 
@@ -13,7 +21,7 @@ app.main ={};
         config = config || {};
 
         //実行
-        var stage = new lib.stage({
+        stage = new lib.stage({
             id: "stage",
             listeners: $.extend({
                 //cは自分自身（stage）が戻ってくる

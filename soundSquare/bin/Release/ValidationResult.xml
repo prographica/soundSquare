@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type='text/xsl' href='C:\ProgramData\Windows App Certification Kit\results.xsl'?>
+<REPORT OVERALL_RESULT="PASS" VERSION="2.2" LATEST_VERSION="TRUE" UPDATE_DOWNLOAD_URL="" TOOLSET_ARCHITECTURE="X64" SecureBoot="FALSE" APP_TYPE="WindowsStore" PUBLISHER_DISPLAY_NAME="Prographica" OSVERSION="6.2.9200.0" OS="Microsoft Windows 8" PER_USER_APPLICATION="" PARTIAL_RUN="FALSE" LCID="1041" VALIDATION_TYPE="CommandLine" ReportGenerationTime="2013/01/20 9:40:24" ID="3a9bbdb73ce367552257545c1f1ec5b2">
+  <REQUIREMENTS>
+    <REQUIREMENT NUMBER="1" TITLE="クリーンに元の状態に戻すことが可能かどうかのテスト" RATIONALE="クリーンで元に戻すことが可能なインストールにより、ユーザーはシステム上でアプリケーションを適切に管理 (展開と削除) できます。" />
+    <REQUIREMENT NUMBER="2" TITLE="正しいフォルダーにインストールするテスト" RATIONALE="Windows によって、プログラムとソフトウェア コンポーネント、共有アプリケーション データ、およびユーザー固有のアプリケーション データの保存先として、ファイル システム内の特定の保存場所が指定されます。" />
+    <REQUIREMENT NUMBER="3" TITLE="デジタル署名されたファイルのテスト" RATIONALE="Authenticode デジタル署名により、正規のソフトウェアであることを確認できます。また、ウイルス感染などによりファイルが改ざんされたかどうかを検出できます。" />
+    <REQUIREMENT NUMBER="4" TITLE="x64 Windows のサポートのテスト" RATIONALE="64 ビット バージョンの Windows との互換性を維持するには、アプリケーションが 64 ビット (または少なくとも 32 ビット) の Windows ベース アプリケーションをネイティブにサポートし、64 ビット バージョンの Windows 上でシームレスに動作することが必要になります。" />
+    <REQUIREMENT NUMBER="5" TITLE="OS バージョン チェックのテスト" RATIONALE="アプリケーションでバージョン チェック (== 5.1) を行わないでください。特定の機能が必要な場合は、その機能が使用できるかどうかをチェックしてください。Windows XP が必要な場合は、Windows XP 以降 (&gt;= 5.1) かどうかをチェックしてください。このように、検出コードは Windows の今後のバージョンでも引き続き動作します。ドライバーのインストーラーおよびアンインストール モジュールでは、OS のバージョン チェックを行いません。" />
+    <REQUIREMENT NUMBER="6" TITLE="ユーザー アカウント制御 (UAC) のテスト" RATIONALE="大部分のアプリケーションでは、実行時に管理者権限を要求せず、標準ユーザーとして問題なく実行できるようにします。Windows アプリケーションでは、マニフェスト (埋め込みまたは外部) を用意して実行レベルを定義し、アプリケーションの実行に必要な権限を OS に通知できるようにする必要があります。" />
+    <REQUIREMENT NUMBER="7" TITLE="システムの再起動マネージャーのメッセージに従う" RATIONALE="重大なシャットダウンが発生した場合、WM_QUERYENDSESSION に FALSE を返すアプリケーションは、WM_ENDSESSION が送信されて閉じられますが、WM_QUERYENDSESSION への応答でタイムアウトしたアプリケーションは、終了します。" />
+    <REQUIREMENT NUMBER="8" TITLE="セーフ モードのテスト" RATIONALE="既定では、Windows にプリインストールされていないドライバーとサービスの大部分は、セーフ モードでは起動されません。システムの基本動作や、診断および回復に必要でないかぎり、これらのドライバーとサービスは無効なままにしておきます。" />
+    <REQUIREMENT NUMBER="9" TITLE="マルチユーザー セッションのテスト" RATIONALE="Windows ユーザーが同時実行セッションを実行する際に、競合や中断が発生しないようにします。ローカルとリモートのいずれであっても、アプリケーションが複数のセッションで実行されているときに、アプリケーションの通常の機能に影響が発生しないことを徹底する必要があります。アプリケーションの設定およびデータ ファイルは、異なるユーザー間で保持されないようにします。ユーザーのプライバシーと設定は、ユーザーのセッションとは切り離しておきます。" />
+    <REQUIREMENT NUMBER="10" TITLE="クラッシュとハングのテスト" RATIONALE="クラッシュやハングなどのアプリケーション エラーが発生すると、ユーザーの作業が中断され、フラストレーションの原因になります。このようなエラーを削減することが、アプリケーションの安定性と信頼性を向上させ、全体としてより良質なアプリケーションの提供につながります。">
+      <TEST INDEX="47" NAME="アプリの起動テスト" DESCRIPTION="アプリケ起動をテストします。" EXECUTIONTIME="00h:00m:24s.41ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+      <TEST INDEX="21" NAME="クラッシュとハング" DESCRIPTION="テスト プロセス中にクラッシュまたはハングさせないでください。" EXECUTIONTIME="00h:00m:05s.99ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+    </REQUIREMENT>
+    <REQUIREMENT NUMBER="11" TITLE="互換性と復元のテスト" RATIONALE="アプリケーションが互換性のない方法で動作していることが Windows によって検出された場合、アプリケーションが正しく動作し、ユーザーが快適に操作できるようにするために、互換性修正プログラムが適用されます。互換性修正プログラムは、レガシ アプリケーションが Windows 上で正しく動作することのみを目的に提供されているため、アプリケーションがその動作に依存しないようにする必要があります。" />
+    <REQUIREMENT NUMBER="12" TITLE="アプリ マニフェストの準拠のテスト" RATIONALE="パッケージ マニフェストに、1 つまたは複数の必須属性がありませんでした。">
+      <TEST INDEX="31" NAME="アプリ マニフェスト" DESCRIPTION="アプリ マニフェストには、すべての必須フィールドに有効なエントリを含める必要があります。" EXECUTIONTIME="00h:00m:02s.96ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+    </REQUIREMENT>
+    <REQUIREMENT NUMBER="13" TITLE="Windows セキュリティのベスト プラクティスのテスト" RATIONALE="アプリケーションが Windows の既定のセキュリティ設定を変更しないようにします。" />
+    <REQUIREMENT NUMBER="14" TITLE="Windows セキュリティ機能のテスト" RATIONALE="アプリケーションは Windows セキュリティ機能をオプトインする必要があります。">
+      <TEST INDEX="33" NAME="Binary Analyzer" DESCRIPTION="バイナリ上で有効にされているセキュリティ機能を分析します" EXECUTIONTIME="00h:00m:02s.01ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+      <TEST INDEX="62" NAME="プライベート コード署名" DESCRIPTION="アプリで、プライベート コード署名キー ファイルをパッケージしないでください。" EXECUTIONTIME="00h:00m:01s.36ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+    </REQUIREMENT>
+    <REQUIREMENT NUMBER="15" TITLE="サポートされている API のテスト" RATIONALE="アプリケーションは、Windows ストア アプリ用 Windows SDK によって許可された API のみを参照する必要があります。">
+      <TEST INDEX="38" NAME="サポートされている API" DESCRIPTION="Windows ストア アプリは、サポートされているプラットフォーム API のみを使用する必要があります。" EXECUTIONTIME="00h:00m:03s.61ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+    </REQUIREMENT>
+    <REQUIREMENT NUMBER="17" TITLE="パフォーマンスのテスト" RATIONALE="アプリケーション起動時および中断時の速度と応答性を確保する一方で、システム リソース (CPU、ファイル IO、メモリなど) の消費量を適切に保ち、まだ開かれていないアプリケーション間で切り替えとマルチタスク処理を高速に実行できるようにする必要があります。">
+      <TEST INDEX="50" NAME="バイトコードの生成" DESCRIPTION="バイト コードの生成は、HTML5 Windows ストア アプリを含むパッケージで正常に完了する必要があります。" EXECUTIONTIME="00h:00m:01s.73ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+      <TEST INDEX="60" NAME="最適化されたバインディング参照" DESCRIPTION="バインディングを使用するとき、WinJS.Binding.optimizeBindingReferences を true に設定して、メモリ使用量を最適化する必要があります。" EXECUTIONTIME="00h:00m:02s.29ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+      <TEST INDEX="43" NAME="起動パフォーマンス" DESCRIPTION="アプリケーションは、CPU、ファイル IO、およびメモリの使用率を適切に保ちながら迅速に起動できる必要があります" EXECUTIONTIME="00h:01m:10s.41ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+      <TEST INDEX="44" NAME="中断パフォーマンス" DESCRIPTION="アプリケーションは、CPU およびファイル IO の使用率を適切に保ちながら迅速に中断できる必要があります" EXECUTIONTIME="00h:01m:15s.71ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+    </REQUIREMENT>
+    <REQUIREMENT NUMBER="19" TITLE="アプリ マニフェスト リソースのテスト" RATIONALE="Appx パッケージ マニフェストには、Appx パッケージング仕様と Appx マニフェスト スキーマに従って、resources.pri ファイル内で定義された有効なリソースを含める必要があります。">
+      <TEST INDEX="45" NAME="アプリ リソースの検証" DESCRIPTION="パッケージには resources.pri ファイル内で定義された有効なリソースを含める必要があります。" EXECUTIONTIME="00h:00m:00s.68ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+      <TEST INDEX="61" NAME="ブランド検証" DESCRIPTION="アプリで、Windows SDK サンプルまたは Visual Studio によってパックされた既定のイメージを使用しないでください。" EXECUTIONTIME="00h:00m:02s.66ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+    </REQUIREMENT>
+    <REQUIREMENT NUMBER="20" TITLE="デバッグ構成のテスト" RATIONALE="アプリによるデバッグ バイナリのインストールは禁止されています。">
+      <TEST INDEX="46" NAME="デバッグの構成" DESCRIPTION="アプリによるデバッグ バイナリのインストールは禁止されています。" EXECUTIONTIME="00h:00m:03s.74ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+    </REQUIREMENT>
+    <REQUIREMENT NUMBER="21" TITLE="ファイルのエンコード" RATIONALE="HTML5 Windows ストア アプリを含むパッケージは、ファイルが正しくエンコードされている必要があります。">
+      <TEST INDEX="49" NAME="UTF-8 ファイル エンコード" DESCRIPTION="HTML5 Windows ストア アプリを含むパッケージは、ファイルが正しくエンコードされている必要があります。" EXECUTIONTIME="00h:00m:01s.71ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+    </REQUIREMENT>
+    <REQUIREMENT NUMBER="22" TITLE="Direct3D 機能レベルのサポート" RATIONALE="アプリケーションは、Direct3D 機能レベル 9.1 のハードウェア上のコンテンツを表示する必要があります。">
+      <TEST INDEX="51" NAME="Direct3D 機能レベルのサポート" DESCRIPTION="アプリケーションは、Direct3D 機能レベル 9.1 のハードウェア上のコンテンツを表示する必要があります。" EXECUTIONTIME="00h:00m:01s.29ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+    </REQUIREMENT>
+    <REQUIREMENT NUMBER="23" TITLE="アプリ機能テスト" RATIONALE="特殊用途の機能を宣言するパッケージでは、オンボード プロセス時に理由を指定する必要があります。">
+      <TEST INDEX="52" NAME="特殊用途の機能" DESCRIPTION="特殊用途の機能を宣言するパッケージでは、オンボード プロセス時に理由を指定する必要があります。" EXECUTIONTIME="00h:00m:01s.61ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+    </REQUIREMENT>
+    <REQUIREMENT NUMBER="24" TITLE="Windows ランタイム メタデータの検証" RATIONALE="メタデータは、すべての生成ソースにわたって整合性および一貫性を維持している必要があります。">
+      <TEST INDEX="56" NAME="ExclusiveTo 属性テスト" DESCRIPTION="クラスは、別のクラスに対して ExclusiveTo とマークされたインターフェイスを実装してはなりません。" EXECUTIONTIME="00h:00m:01s.16ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+      <TEST INDEX="57" NAME="型のロケーション テスト" DESCRIPTION="一致する名前空間が最も長いメタデータ ファイル内に、型が定義されている必要があります。" EXECUTIONTIME="00h:00m:00s.65ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+      <TEST INDEX="55" NAME="型名の大文字小文字の区別テスト" DESCRIPTION="名前空間および型名は、大文字/小文字の違いだけで異なるものにすることはできません。" EXECUTIONTIME="00h:00m:01s.19ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+      <TEST INDEX="54" NAME="型名の正確性テスト" DESCRIPTION="システム型に限り、Windows 名前空間に存在できます。グローバル名前空間には、どの型も存在できません。" EXECUTIONTIME="00h:00m:00s.65ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+      <TEST INDEX="58" NAME="一般的なメタデータ正確性テスト" DESCRIPTION="メタデータ ファイルは、有効かつ正確であるためにさまざまな要件を満たしている必要があります。" EXECUTIONTIME="00h:00m:01s.23ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+      <TEST INDEX="53" NAME="プロパティ テスト" DESCRIPTION="書き込み専用およびインデクサー プロパティを使用できない可能性があります。対応する getter メソッドと setter メソッドの型が一致している必要があります。" EXECUTIONTIME="00h:00m:00s.67ms">
+        <RESULT><![CDATA[PASS]]></RESULT>
+        <MESSAGES />
+      </TEST>
+    </REQUIREMENT>
+  </REQUIREMENTS>
+  <APPLICATIONS>
+    <Installed_Programs>
+      <Program Name="49690Prographica.soundSquare" Type="Application" Source="AppxPackage" Publisher="CN=DF792672-DA9B-4556-876B-57213CB13434" Version="1.0.0.9" Language="1033" OnSystemDrive="true" RootDirPath="C:\Program Files\WindowsApps\49690Prographica.soundSquare_1.0.0.9_neutral__8fmkqggjea28c" PathEvidenceId="0x20f5" RNP="0x1" DNP="0xd" EvidenceId="0x20f5" Id="0000f3b6dd9d328434aad5fade7d1084745c00000904">
+        <Indicators>
+          <DirectoryIndicators>
+            <Directory Name="js" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\js" RNP="0x9" DNP="0xb" UniqueId="0x20fa" Id="0000ed830a2cad918e620bb3cae846c3985ea8ddae26" />
+            <Directory Name="resources" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources" RNP="0x9" DNP="0xb" UniqueId="0x2105" Id="0000481e8e63b74c427004e1c08f7af88784830005b2" />
+            <Directory Name="js" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0x9" DNP="0xb" UniqueId="0x2108" Id="0000ed830a2cad918e620bb3cae846c3985ea8ddae26" />
+            <Directory Name="lib" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\tweenjs\lib" RNP="0x9" DNP="0xb" UniqueId="0x2125" Id="0000244ddb0987fcccfe1d1cd79097b320e2fc529cc4" />
+            <Directory Name="49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c" RNP="0x9" DNP="0xb" UniqueId="0x20f6" Id="0000e942222c98a52545dfaa9c765970f3d5786f2490" />
+            <Directory Name="lib" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\easeljs\lib" RNP="0x9" DNP="0xb" UniqueId="0x2121" Id="0000244ddb0987fcccfe1d1cd79097b320e2fc529cc4" />
+            <Directory Name="easeljs" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\easeljs" RNP="0x9" DNP="0xb" UniqueId="0x2120" Id="00001a11980ce376a5ae832799231e2da9f2f93a16b1" />
+            <Directory Name="tweenjs" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\tweenjs" RNP="0x9" DNP="0xb" UniqueId="0x2124" Id="0000c67eebf173b74b530cef9d437eef79b992302d00" />
+          </DirectoryIndicators>
+          <PackageManifestIndicator>
+            <PackageManifest PackageFullName="49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c" />
+            <Identity Name="49690Prographica.soundSquare" Version="1.0.0.9" Publisher="CN=DF792672-DA9B-4556-876B-57213CB13434" ProcessorArchitecture="neutral" />
+            <Extension Category="windows.backgroundTasks" StartPage="default.html">
+              <BackgroundTasks>
+                <Task Type="audio" />
+              </BackgroundTasks>
+            </Extension>
+            <Dependencies>
+              <PackageDependency Name="Microsoft.WinJS.1.0" MinVersion="1.0.9200.20512" />
+            </Dependencies>
+            <Properties>
+              <DisplayName>soundSquare</DisplayName>
+              <PublisherDisplayName>Prographica</PublisherDisplayName>
+              <Logo>images\50x50.png</Logo>
+            </Properties>
+            <Resources>
+              <Resource Language="JA-JP" />
+            </Resources>
+            <Prerequisites>
+              <OSMinVersion>6.2.1</OSMinVersion>
+              <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+            </Prerequisites>
+            <Capabilities>
+              <Capability Name="internetClient" />
+            </Capabilities>
+          </PackageManifestIndicator>
+        </Indicators>
+        <StaticProperties>
+          <Files Id="0000feec7e88e9c5c37a11a47e3a264f4e280845d9c7">
+            <File Name="default.js" Id="000048f6104205a79e579df7ffd063ec61c46638d481" Size="0x693" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\js\default.js" LongPathHash="0000ba05be9352be44e87b87aa9491eab391d2e7e9ec" UniqueId="0x20fe" />
+            <File Name="index.js" Id="000040a73a90848992b01d86f1e798970f160dd20e30" Size="0x72e" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\index.js" LongPathHash="00006226eca72cbdb17b99e3d9e59081616750f0ac51" UniqueId="0x2119" />
+            <File Name="lib.core.js" Id="0000c80e83a50076cf310c059cfb8775686e21a5e337" ShortName="LIBCOR~1.JS" Size="0x53" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\lib.core.js" LongPathHash="00006f7e9ab659ec49dcc0e728157fe45c3ab9718902" UniqueId="0x211e" />
+            <File Name="movieclip-0.5.0.min.js" Id="0000bd0adecfb5a43fd2129a37253dcda6effbe21787" ShortName="MOVIEC~1.JS" Size="0xcae" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\easeljs\lib" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\easeljs\lib\movieclip-0.5.0.min.js" LongPathHash="0000bf19d7d1b43902543fcfbc9e66e9702eff0f0f80" UniqueId="0x2123" />
+            <File Name="tweenjs-0.3.0.min.js" Id="000057b4a39b1e49ce6c80a225661a52e44656a60de1" ShortName="TWEENJ~1.JS" Size="0x26d6" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\tweenjs\lib" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\tweenjs\lib\tweenjs-0.3.0.min.js" LongPathHash="0000aabc1ef42f096bcda9070b2f01835babca910445" UniqueId="0x2126" />
+            <File Name="app.modal.js" Id="00004c48ecf8d2dbe3931d116925f6f95dbae0827d92" ShortName="APPMOD~1.JS" Size="0x145f" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\app.modal.js" LongPathHash="00001292889e200452ef82eb53fa96cde0c2dfff0d46" UniqueId="0x2111" />
+            <File Name="app.register.js" Id="00006c77b67f855fc9012220b0a748668d030969eaf4" ShortName="APPREG~1.JS" Size="0x117e" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\app.register.js" LongPathHash="00002b4bb140cd44c9f4d81c72ff4617e258fc07bd63" UniqueId="0x2113" />
+            <File Name="app.facebook.js" Id="0000e7ea32a7ca191f1238d4c733768cffd7ed0e345c" ShortName="APPFAC~1.JS" Size="0x290" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\js\app.facebook.js" LongPathHash="000050a4f4d848404f6c13191266fc9b670bd09db543" UniqueId="0x20fc" />
+            <File Name="easeljs-0.5.0.min.js" Id="000097f81187c77541f4ff982c3e1480c231ad3a29e6" ShortName="EASELJ~1.JS" Size="0xd730" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\easeljs\lib" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\easeljs\lib\easeljs-0.5.0.min.js" LongPathHash="0000bc7e166ac03af280bf2f6d941273bb8bc2f11ae0" UniqueId="0x2122" />
+            <File Name="app.titlebar.js" Id="0000ef043273743770402424c8c4b9633aea92b99c05" ShortName="APPTIT~1.JS" Size="0x102b" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\app.titlebar.js" LongPathHash="0000d9672a416bebb4647daab45a4a34556593ac749b" UniqueId="0x2116" />
+            <File Name="default.html" Id="0000fcbcd3467364b140b1407c3bf6727d4a50f72be8" ShortName="DEFAUL~1.HTM" Size="0x1938" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\default.html" LongPathHash="0000acacb3eddd2eafc196d51072a9d8f2913ffae618" UniqueId="0x20f7" />
+            <File Name="app.player.js" Id="000065647cb8947ceb7dac6b5eb3ed0d923e079708db" ShortName="APPPLA~1.JS" Size="0x443" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\app.player.js" LongPathHash="00004b985405ec1e0c46485d902158dd5a4e3795a78d" UniqueId="0x2112" />
+            <File Name="app.appbar.js" Id="0000730bfb87272d7602357d7bdaa5d00e7a7c559e61" ShortName="APPAPP~1.JS" Size="0x27f" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\js\app.appbar.js" LongPathHash="00009e6685b8e6b0db824ac0f70e59313ef56950f4f6" UniqueId="0x20fb" />
+            <File Name="app.loader.js" Id="0000611aa790c5f2368d9b7bcd6087942e51e9bea517" ShortName="APPLOA~1.JS" Size="0x385" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\js\app.loader.js" LongPathHash="0000c276c731bdf0591b5ff5d4629de8314085177c49" UniqueId="0x20fd" />
+            <File Name="index.js" Id="0000cc50af2fdac6555749712e5d78428699d157c467" Size="0x202" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\js\index.js" LongPathHash="000053d935a768aec12ba5c4df8264d2833543fbb664" UniqueId="0x2100" />
+            <File Name="app.block.js" Id="00008ca32ecd47c2898884989b0b315bb469e58981e7" ShortName="APPBLO~1.JS" Size="0x15c3" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\app.block.js" LongPathHash="0000dbcb820c1b31315d9d9a2f611c1fb45a4280d89e" UniqueId="0x210a" />
+            <File Name="app.statusbar.js" Id="000030899c8cec162c5bbc33ac4233416a8f65b74edc" ShortName="APPSTA~1.JS" Size="0xcbb" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\app.statusbar.js" LongPathHash="00002c09b3deeb5f0bc8e33240f2899eb65facde7af4" UniqueId="0x2115" />
+            <File Name="dateformat.js" Id="00000e83fb1ab94909df52cabcdd1c639b24bdea67c2" ShortName="DATEFO~1.JS" Size="0x247a" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\dateformat.js" LongPathHash="0000b1ee4f0b3c78a753f4e87a03d4d5c7efa9e51572" UniqueId="0x2118" />
+            <File Name="jquery.easing-1.3.js" Id="0000963ca3c70c1b977c340aee27d0ad90144f65f91a" ShortName="JQUERY~2.JS" Size="0x1fa4" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\jquery.easing-1.3.js" LongPathHash="0000d92daf01b46a62c9684b56c168028759a3a7d6b2" UniqueId="0x211b" />
+            <File Name="app.like.js" Id="000067e60558bffcf230bb7f9da8dabd4660450924fd" ShortName="APPLIK~1.JS" Size="0x1453" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\app.like.js" LongPathHash="0000fd884bfaa54b3b7e15ab79f6bc1c325c94ba9961" UniqueId="0x210e" />
+            <File Name="lib.stage.js" Id="000046a06a2d39c9c9a42f08f7670d94332bac6ab0aa" ShortName="LIBSTA~1.JS" Size="0x5289" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\lib.stage.js" LongPathHash="0000963e73b88a3ba40cfa3bf67bba9c214610dc42ba" UniqueId="0x211f" />
+            <File Name="app.config.js" Id="000019d2083284f7355f90fdb9f4e41485ab9f51a0f4" ShortName="APPCON~1.JS" Size="0xc8" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\app.config.js" LongPathHash="000098a2364e6a86720ca1b8dc8cce7370cf8ae99496" UniqueId="0x210c" />
+            <File Name="jquery-1.8.0-windows8-ready.js" Id="000011ad75587f92da3ccee32c1de41be3244f98199f" ShortName="JQUERY~1.JS" Size="0x3f280" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\js\jquery-1.8.0-windows8-ready.js" LongPathHash="0000469c1200c213f4d379ec5ed9b3683f1408ab473f" UniqueId="0x2101" />
+            <File Name="fb.js" Id="0000d8bf315e6f82a32b16bc9113cc96687a83403eca" Size="0x4dc2" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\js\fb.js" LongPathHash="0000dd905083e3d5bd232dd39430f189de337b004434" UniqueId="0x20ff" />
+            <File Name="app.loader.js" Id="00009e887779cc2ea50f352cbc26a265cf7b986642b6" ShortName="APPLOA~1.JS" Size="0x493" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\app.loader.js" LongPathHash="0000f09ace54ca0f65b6663c6ba5032449fbee86e44a" UniqueId="0x210f" />
+            <File Name="app.facebook.js" Id="0000ef672f8979f635e952a3d82dd0c9fc13ac828d7c" ShortName="APPFAC~1.JS" Size="0xadd" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\app.facebook.js" LongPathHash="000024b3bc70b8a56686bcb1c866822ca5be6c436f2f" UniqueId="0x210d" />
+            <File Name="app.button.js" Id="0000f28e9c4e274bae8f4ca8b5a74d9c20cd0d5bc7ff" ShortName="APPBUT~1.JS" Size="0x42a" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\app.button.js" LongPathHash="0000bcbaee15d2d194db66fe8a9d61afe02428ef6dfb" UniqueId="0x210b" />
+            <File Name="app.main.js" Id="0000496f7a9a21bea4b76b92e202887fa9f16a943fe3" ShortName="APPMAI~1.JS" Size="0x11bb" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\app.main.js" LongPathHash="00001df9d50a46746645a0b2a69df99dd7871f69f100" UniqueId="0x2110" />
+            <File Name="app.setting.js" Id="000078fced298bca78d27a25609fd4169e6b0f1da91a" ShortName="APPSET~1.JS" Size="0x11cb" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\app.setting.js" LongPathHash="0000dd987d8a0d5e0ca75ca8e53d6fa169f59ac2d09e" UniqueId="0x2114" />
+            <File Name="lib.stage.js" Id="0000288bb4421c26f495c5cb3cfd4513d6ca35b3891b" ShortName="LIBSTA~1.JS" Size="0xe41" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\js\lib.stage.js" LongPathHash="00000103c503969f3302e501b710f9ea4294d6905c4f" UniqueId="0x2102" />
+            <File Name="app.tutorial.js" Id="0000fd5b688cfab91eb71ca2f550934677d8e811c8d2" ShortName="APPTUT~1.JS" Size="0x2b1" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\app.tutorial.js" LongPathHash="00009b498be69731807c92160376146ca74b5a882342" UniqueId="0x2117" />
+            <File Name="jquery.activity-indicator-1.0.0.min.js" Id="00004c0640d58302942275b87adc158e0e3eb0817dc6" ShortName="JQUERY~1.JS" Size="0x10c0" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\jquery.activity-indicator-1.0.0.min.js" LongPathHash="0000dc07804b1e1ae84fbd766633173037fc2a8e4222" UniqueId="0x211a" />
+            <File Name="jquery.extend.js" Id="0000b8184214d19074bc0b58447d784785b820629a57" ShortName="JQUERY~3.JS" Size="0x478" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\jquery.extend.js" LongPathHash="00004da3766eb35d59d32ebd7d0759cd34b08abc318c" UniqueId="0x211c" />
+            <File Name="app.ajax.js" Id="00008fd672e27704bf9063dfab233208a3e84f62f99c" ShortName="APPAJA~1.JS" Size="0x532" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\app.ajax.js" LongPathHash="000017a4cb868419c2236b68147115d93c8e55009cdc" UniqueId="0x2109" />
+            <File Name="jquery.transit.js" Id="0000a79bd37a04e347de74209a67062dfffa1ab1e2b9" ShortName="JQUERY~4.JS" Size="0x4a1e" BinaryType="UNKNOWN" Created="01/20/2013 00:36:08" Modified="01/20/2013 00:36:08" Path="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js" RNP="0xa" DNP="0x9" LowerCaseLongPath="c:\program files\windowsapps\49690prographica.soundsquare_1.0.0.9_neutral__8fmkqggjea28c\resources\js\jquery.transit.js" LongPathHash="000033a987afbeed4415931a55777c4b5162bb4e8e47" UniqueId="0x211d" />
+          </Files>
+        </StaticProperties>
+      </Program>
+    </Installed_Programs>
+  </APPLICATIONS>
+  <DEPENDENCY_INFORMATION>
+    <AitStaticAnalysis ProgramId="0000f3b6dd9d328434aad5fade7d1084745c00000904" AnalysisVersion="1.54" DictionaryVersion="1.6" Type="Package" Id="49690Prographica.soundSquare_1.0.0.9_neutral__8fmkqggjea28c">
+      <AitFile ErrorCode="0" Name="dateformat.js" Id="00000e83fb1ab94909df52cabcdd1c639b24bdea67c2" />
+      <AitFile ErrorCode="0" Name="jquery-1.8.0-windows8-ready.js" Id="000011ad75587f92da3ccee32c1de41be3244f98199f" />
+      <AitFile ErrorCode="0" Name="app.config.js" Id="000019d2083284f7355f90fdb9f4e41485ab9f51a0f4" />
+      <AitFile ErrorCode="0" Name="lib.stage.js" Id="0000288bb4421c26f495c5cb3cfd4513d6ca35b3891b">
+        <AitCategory Id="WRTJavaScript">
+          <AitFeature Name="WinJS" />
+          <AitFeature Name="Windows.Media.MediaControl" />
+          <AitFeature Name="Windows.UI.Notifications" />
+        </AitCategory>
+      </AitFile>
+      <AitFile ErrorCode="0" Name="app.statusbar.js" Id="000030899c8cec162c5bbc33ac4233416a8f65b74edc" />
+      <AitFile ErrorCode="0" Name="index.js" Id="000040a73a90848992b01d86f1e798970f160dd20e30" />
+      <AitFile ErrorCode="0" Name="lib.stage.js" Id="000046a06a2d39c9c9a42f08f7670d94332bac6ab0aa">
+        <AitCategory Id="WRTJavaScript">
+          <AitFeature Name="WinJS" />
+        </AitCategory>
+      </AitFile>
+      <AitFile ErrorCode="0" Name="default.js" Id="000048f6104205a79e579df7ffd063ec61c46638d481">
+        <AitCategory Id="WRTJavaScript">
+          <AitFeature Name="WinJS.Application" />
+          <AitFeature Name="WinJS.Application.sessionState" />
+          <AitFeature Name="WinJS.Binding.optimizeBindingReferences" />
+          <AitFeature Name="WinJS.UI.processAll" />
+          <AitFeature Name="Windows.ApplicationModel.Activation" />
+        </AitCategory>
+      </AitFile>
+      <AitFile ErrorCode="0" Name="app.main.js" Id="0000496f7a9a21bea4b76b92e202887fa9f16a943fe3" />
+      <AitFile ErrorCode="0" Name="jquery.activity-indicator-1.0.0.min.js" Id="00004c0640d58302942275b87adc158e0e3eb0817dc6" />
+      <AitFile ErrorCode="0" Name="app.modal.js" Id="00004c48ecf8d2dbe3931d116925f6f95dbae0827d92" />
+      <AitFile ErrorCode="0" Name="tweenjs-0.3.0.min.js" Id="000057b4a39b1e49ce6c80a225661a52e44656a60de1" />
+      <AitFile ErrorCode="0" Name="app.loader.js" Id="0000611aa790c5f2368d9b7bcd6087942e51e9bea517" />
+      <AitFile ErrorCode="0" Name="app.player.js" Id="000065647cb8947ceb7dac6b5eb3ed0d923e079708db" />
+      <AitFile ErrorCode="0" Name="app.like.js" Id="000067e60558bffcf230bb7f9da8dabd4660450924fd" />
+      <AitFile ErrorCode="0" Name="app.register.js" Id="00006c77b67f855fc9012220b0a748668d030969eaf4" />
+      <AitFile ErrorCode="0" Name="app.appbar.js" Id="0000730bfb87272d7602357d7bdaa5d00e7a7c559e61" />
+      <AitFile ErrorCode="0" Name="app.setting.js" Id="000078fced298bca78d27a25609fd4169e6b0f1da91a" />
+      <AitFile ErrorCode="0" Name="app.block.js" Id="00008ca32ecd47c2898884989b0b315bb469e58981e7" />
+      <AitFile ErrorCode="0" Name="app.ajax.js" Id="00008fd672e27704bf9063dfab233208a3e84f62f99c" />
+      <AitFile ErrorCode="0" Name="jquery.easing-1.3.js" Id="0000963ca3c70c1b977c340aee27d0ad90144f65f91a" />
+      <AitFile ErrorCode="0" Name="easeljs-0.5.0.min.js" Id="000097f81187c77541f4ff982c3e1480c231ad3a29e6" />
+      <AitFile ErrorCode="0" Name="app.loader.js" Id="00009e887779cc2ea50f352cbc26a265cf7b986642b6" />
+      <AitFile ErrorCode="0" Name="jquery.transit.js" Id="0000a79bd37a04e347de74209a67062dfffa1ab1e2b9" />
+      <AitFile ErrorCode="0" Name="jquery.extend.js" Id="0000b8184214d19074bc0b58447d784785b820629a57" />
+      <AitFile ErrorCode="0" Name="movieclip-0.5.0.min.js" Id="0000bd0adecfb5a43fd2129a37253dcda6effbe21787" />
+      <AitFile ErrorCode="0" Name="lib.core.js" Id="0000c80e83a50076cf310c059cfb8775686e21a5e337" />
+      <AitFile ErrorCode="0" Name="index.js" Id="0000cc50af2fdac6555749712e5d78428699d157c467">
+        <AitCategory Id="WRTJavaScript">
+          <AitFeature Name="Windows.UI.ApplicationSettings.SettingsCommand" />
+          <AitFeature Name="Windows.UI.ApplicationSettings.SettingsPane.getForCurrentView" />
+        </AitCategory>
+      </AitFile>
+      <AitFile ErrorCode="0" Name="fb.js" Id="0000d8bf315e6f82a32b16bc9113cc96687a83403eca">
+        <AitCategory Id="WRTJavaScript">
+          <AitFeature Name="WinJS" />
+          <AitFeature Name="WinJS.xhr" />
+          <AitFeature Name="Windows.Foundation.Uri" />
+          <AitFeature Name="Windows.Security.Authentication.Web.WebAuthenticationBroker.authenticateAsync" />
+          <AitFeature Name="Windows.Security.Authentication.Web.WebAuthenticationBroker.default" />
+        </AitCategory>
+      </AitFile>
+      <AitFile ErrorCode="0" Name="app.facebook.js" Id="0000e7ea32a7ca191f1238d4c733768cffd7ed0e345c" />
+      <AitFile ErrorCode="0" Name="app.titlebar.js" Id="0000ef043273743770402424c8c4b9633aea92b99c05" />
+      <AitFile ErrorCode="0" Name="app.facebook.js" Id="0000ef672f8979f635e952a3d82dd0c9fc13ac828d7c" />
+      <AitFile ErrorCode="0" Name="app.button.js" Id="0000f28e9c4e274bae8f4ca8b5a74d9c20cd0d5bc7ff" />
+      <AitFile ErrorCode="0" Name="default.html" Id="0000fcbcd3467364b140b1407c3bf6727d4a50f72be8">
+        <AitCategory Id="WRTJavaScript">
+          <AitFeature Name="WinJS" />
+          <AitFeature Name="WinJS.1.0" />
+          <AitFeature Name="WinJS.UI.AppBar" />
+          <AitFeature Name="WinJS.UI.AppBarCommand" />
+          <AitFeature Name="WinJS.UI.SettingsFlyout" />
+        </AitCategory>
+      </AitFile>
+      <AitFile ErrorCode="0" Name="app.tutorial.js" Id="0000fd5b688cfab91eb71ca2f550934677d8e811c8d2" />
+    </AitStaticAnalysis>
+  </DEPENDENCY_INFORMATION>
+</REPORT>

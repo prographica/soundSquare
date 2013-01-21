@@ -5,24 +5,36 @@
     <WindowsUser>prographica</WindowsUser>
     <SolutionConfiguration>Release|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>neutral</PackageArchitecture>
-    <RegisteredManifestChecksum>7F33F142BEE32B40C1DEB4E6CE101C01BA4D7D6E7FA8942CA89EDBC62B933040</RegisteredManifestChecksum>
-    <RegisteredPackageMoniker>e1f18231-1ab1-41b6-8b98-aa60e00ad6a2_1.0.0.0_neutral__6mfgx0w9a07nr</RegisteredPackageMoniker>
-    <RegisteredUserModeAppID>e1f18231-1ab1-41b6-8b98-aa60e00ad6a2_6mfgx0w9a07nr!App</RegisteredUserModeAppID>
-    <RegisteredPackageID>e1f18231-1ab1-41b6-8b98-aa60e00ad6a2</RegisteredPackageID>
-    <RegisteredPackagePublisher>CN=prographica</RegisteredPackagePublisher>
-    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+    <RegisteredManifestChecksum>18056C06EF43AC3ABD555B54F8C576C0B66C7A02A6583E10AB3C99680B439937</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>49690Prographica.soundSquare_1.0.0.9_neutral__8fmkqggjea28c</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>49690Prographica.soundSquare_8fmkqggjea28c!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>49690Prographica.soundSquare</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=DF792672-DA9B-4556-876B-57213CB13434</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.9</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
     <AppXManifest Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\bin\Release\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2013-01-17T14:54:29.964</Modified>
+      <Modified>2013-01-20T00:35:50.440</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\css\general.css">
+      <PackagePath>css\general.css</PackagePath>
+      <Modified>2013-01-18T05:23:49.070</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\css\default.css">
+      <PackagePath>css\default.css</PackagePath>
+      <Modified>2013-01-18T05:19:34.235</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\css\general.css">
+      <PackagePath>resources\css\general.css</PackagePath>
+      <Modified>2013-01-19T19:14:24.465</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\default.html">
       <PackagePath>default.html</PackagePath>
-      <Modified>2013-01-17T14:54:14.324</Modified>
+      <Modified>2013-01-18T17:17:48.199</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\images\150x150.png">
       <PackagePath>images\150x150.png</PackagePath>
@@ -83,7 +95,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\js\app.facebook.js">
       <PackagePath>js\app.facebook.js</PackagePath>
-      <Modified>2012-12-02T17:15:57.274</Modified>
+      <Modified>2013-01-20T02:13:25.460</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\js\default.js">
       <PackagePath>js\default.js</PackagePath>
@@ -91,7 +103,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\js\fb.js">
       <PackagePath>js\fb.js</PackagePath>
-      <Modified>2012-12-02T17:30:18.622</Modified>
+      <Modified>2013-01-20T01:37:06.941</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\js\jquery-1.8.0-windows8-ready.js">
       <PackagePath>js\jquery-1.8.0-windows8-ready.js</PackagePath>
@@ -99,159 +111,127 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\js\lib.stage.js">
       <PackagePath>js\lib.stage.js</PackagePath>
-      <Modified>2012-12-02T19:01:34.050</Modified>
+      <Modified>2013-01-17T17:38:23.287</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\js\app.loader.js">
+      <PackagePath>js\app.loader.js</PackagePath>
+      <Modified>2013-01-18T05:24:57.726</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\js\app.appbar.js">
+      <PackagePath>js\app.appbar.js</PackagePath>
+      <Modified>2013-01-18T07:49:26.377</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\js\index.js">
+      <PackagePath>js\index.js</PackagePath>
+      <Modified>2013-01-18T08:42:37.274</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\app.ajax.js">
       <PackagePath>resources\js\app.ajax.js</PackagePath>
-      <Modified>2012-12-01T08:21:12.000</Modified>
+      <Modified>2013-01-19T12:25:27.223</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\app.block.js">
       <PackagePath>resources\js\app.block.js</PackagePath>
-      <Modified>2012-12-01T08:23:16.000</Modified>
+      <Modified>2013-01-19T12:27:26.084</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\app.button.js">
       <PackagePath>resources\js\app.button.js</PackagePath>
-      <Modified>2012-11-24T16:39:01.000</Modified>
+      <Modified>2013-01-19T12:30:23.051</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\app.config.js">
       <PackagePath>resources\js\app.config.js</PackagePath>
-      <Modified>2012-12-01T06:27:21.000</Modified>
+      <Modified>2013-01-19T12:32:52.769</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\app.facebook.js">
       <PackagePath>resources\js\app.facebook.js</PackagePath>
-      <Modified>2012-12-02T17:32:47.769</Modified>
+      <Modified>2013-01-20T01:34:06.276</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\app.like.js">
       <PackagePath>resources\js\app.like.js</PackagePath>
-      <Modified>2013-01-17T14:27:49.998</Modified>
+      <Modified>2013-01-19T12:34:37.707</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\app.loader.js">
       <PackagePath>resources\js\app.loader.js</PackagePath>
-      <Modified>2012-11-27T06:22:49.000</Modified>
+      <Modified>2013-01-19T12:34:50.652</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\app.main.js">
       <PackagePath>resources\js\app.main.js</PackagePath>
-      <Modified>2013-01-17T14:27:49.998</Modified>
+      <Modified>2013-01-19T12:35:13.956</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\app.modal.js">
       <PackagePath>resources\js\app.modal.js</PackagePath>
-      <Modified>2013-01-12T16:02:23.799</Modified>
+      <Modified>2013-01-19T12:35:25.916</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\app.player.js">
       <PackagePath>resources\js\app.player.js</PackagePath>
-      <Modified>2012-11-27T06:22:44.000</Modified>
+      <Modified>2013-01-19T12:35:39.088</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\app.register.js">
       <PackagePath>resources\js\app.register.js</PackagePath>
-      <Modified>2013-01-17T14:27:49.982</Modified>
+      <Modified>2013-01-19T12:35:52.143</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\app.setting.js">
       <PackagePath>resources\js\app.setting.js</PackagePath>
-      <Modified>2013-01-17T14:27:49.982</Modified>
+      <Modified>2013-01-19T12:36:04.512</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\app.statusbar.js">
       <PackagePath>resources\js\app.statusbar.js</PackagePath>
-      <Modified>2012-11-27T04:32:54.000</Modified>
+      <Modified>2013-01-19T12:36:18.442</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\app.titlebar.js">
       <PackagePath>resources\js\app.titlebar.js</PackagePath>
-      <Modified>2013-01-17T14:27:49.967</Modified>
+      <Modified>2013-01-19T12:36:30.513</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\app.tutorial.js">
       <PackagePath>resources\js\app.tutorial.js</PackagePath>
-      <Modified>2013-01-12T16:00:23.175</Modified>
+      <Modified>2013-01-19T12:36:43.516</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\dateformat.js">
       <PackagePath>resources\js\dateformat.js</PackagePath>
-      <Modified>2012-11-03T15:36:16.000</Modified>
+      <Modified>2013-01-19T12:36:55.617</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\easeljs\lib\easeljs-0.5.0.min.js">
       <PackagePath>resources\js\easeljs\lib\easeljs-0.5.0.min.js</PackagePath>
-      <Modified>2012-11-03T15:36:15.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\easeljs\lib\easeljs-NEXT.min.js">
-      <PackagePath>resources\js\easeljs\lib\easeljs-NEXT.min.js</PackagePath>
-      <Modified>2012-11-03T15:36:15.000</Modified>
+      <Modified>2013-01-19T19:07:26.483</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\easeljs\lib\movieclip-0.5.0.min.js">
       <PackagePath>resources\js\easeljs\lib\movieclip-0.5.0.min.js</PackagePath>
-      <Modified>2012-11-03T15:36:15.000</Modified>
+      <Modified>2013-01-19T19:07:24.648</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\index.js">
       <PackagePath>resources\js\index.js</PackagePath>
-      <Modified>2013-01-17T14:27:49.951</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\jquery-1.8.2.min.js">
-      <PackagePath>resources\js\jquery-1.8.2.min.js</PackagePath>
-      <Modified>2012-11-03T15:36:16.000</Modified>
+      <Modified>2013-01-19T12:37:06.864</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\jquery.activity-indicator-1.0.0.min.js">
       <PackagePath>resources\js\jquery.activity-indicator-1.0.0.min.js</PackagePath>
-      <Modified>2012-11-03T15:36:16.000</Modified>
+      <Modified>2013-01-19T12:37:23.905</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\jquery.easing-1.3.js">
       <PackagePath>resources\js\jquery.easing-1.3.js</PackagePath>
-      <Modified>2012-11-04T07:41:38.000</Modified>
+      <Modified>2013-01-19T12:37:36.925</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\jquery.extend.js">
       <PackagePath>resources\js\jquery.extend.js</PackagePath>
-      <Modified>2013-01-12T16:00:23.129</Modified>
+      <Modified>2013-01-19T12:37:54.109</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\jquery.transit.js">
       <PackagePath>resources\js\jquery.transit.js</PackagePath>
-      <Modified>2012-11-22T11:22:30.000</Modified>
+      <Modified>2013-01-19T12:38:05.809</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\lib.core.js">
       <PackagePath>resources\js\lib.core.js</PackagePath>
-      <Modified>2013-01-12T16:00:23.238</Modified>
+      <Modified>2013-01-19T12:38:22.298</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\lib.stage.js">
       <PackagePath>resources\js\lib.stage.js</PackagePath>
-      <Modified>2013-01-17T14:27:49.967</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\soundjs\lib\soundjs-0.3.0.min.js">
-      <PackagePath>resources\js\soundjs\lib\soundjs-0.3.0.min.js</PackagePath>
-      <Modified>2012-11-03T15:36:15.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\soundjs\lib\soundjs-NEXT.min.js">
-      <PackagePath>resources\js\soundjs\lib\soundjs-NEXT.min.js</PackagePath>
-      <Modified>2012-11-03T15:36:15.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\soundjs\lib\soundjs.flashplugin-0.3.0.min.js">
-      <PackagePath>resources\js\soundjs\lib\soundjs.flashplugin-0.3.0.min.js</PackagePath>
-      <Modified>2012-11-03T15:36:15.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\soundjs\lib\soundjs.flashplugin-NEXT.min.js">
-      <PackagePath>resources\js\soundjs\lib\soundjs.flashplugin-NEXT.min.js</PackagePath>
-      <Modified>2012-11-03T15:36:15.000</Modified>
+      <Modified>2013-01-19T12:38:33.060</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\tweenjs\lib\tweenjs-0.3.0.min.js">
       <PackagePath>resources\js\tweenjs\lib\tweenjs-0.3.0.min.js</PackagePath>
-      <Modified>2012-11-03T15:36:15.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\css\default.css">
-      <PackagePath>css\default.css</PackagePath>
-      <Modified>2012-09-18T11:52:22.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\css\general.css">
-      <PackagePath>resources\css\general.css</PackagePath>
-      <Modified>2013-01-17T14:27:50.045</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\index.php">
-      <PackagePath>resources\index.php</PackagePath>
-      <Modified>2013-01-13T12:58:57.722</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\easeljs\lib\README.txt">
-      <PackagePath>resources\js\easeljs\lib\README.txt</PackagePath>
-      <Modified>2012-11-03T15:36:15.000</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\resources\js\soundjs\lib\README.txt">
-      <PackagePath>resources\js\soundjs\lib\README.txt</PackagePath>
-      <Modified>2012-11-03T15:36:15.000</Modified>
+      <Modified>2013-01-19T19:07:56.946</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\bin\Release\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2013-01-13T13:08:42.838</Modified>
+      <Modified>2013-01-20T00:35:50.236</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

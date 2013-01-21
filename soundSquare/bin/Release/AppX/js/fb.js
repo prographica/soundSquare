@@ -1,4 +1,4 @@
-(function() {
+﻿(function() {
     
     var FB = (function() {
 
@@ -136,7 +136,9 @@
                             return;
                         }
 
-                        // we now have the access token,
+                    	// we now have the access token,
+
+                        console.dir(qs);
 
                         // set it as the default access token.
                         FB.setAccessToken(qs.access_token);
@@ -146,7 +148,10 @@
 
                         // now navigate to home page
                         if (callback) {
-                            callback.call(this);
+                        	callback.apply(this, [{
+                        		success: true,
+                        		access_token: FB.getAccessToken()
+                        	}]);
                         }
 
                     }, function error(err) {

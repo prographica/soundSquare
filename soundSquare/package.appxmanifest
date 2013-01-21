@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="49690Prographica.soundSquare" Version="1.0.0.4" Publisher="CN=DF792672-DA9B-4556-876B-57213CB13434" />
+  <Identity Name="49690Prographica.soundSquare" Version="1.0.0.9" Publisher="CN=DF792672-DA9B-4556-876B-57213CB13434" />
   <Properties>
     <DisplayName>soundSquare</DisplayName>
     <PublisherDisplayName>Prographica</PublisherDisplayName>

@@ -1,11 +1,11 @@
-var lib = lib || {};
+﻿var lib = lib || {};
 
 
 /**
  * http://www.atmarkit.co.jp/fwcr/design/benkyo/html5appli11/01.html 
  */
 (function(){
-
+	"user strict";
 
 
     lib.stage = function(config){
@@ -138,9 +138,25 @@ var lib = lib || {};
 
         //初回準備ができたことを通知
         this.canvas.trigger('init', this);
+
+		//アクティブなステージとして記録
+        _currentStage = this;
         return;
     }
 
+
+
+    lib.stage.prototype.isPlaying = function () {
+    	if (!this.player) {
+    		return false;
+    	}
+
+    	if (this.player.isPlaying) {
+    		return true;
+    	}
+
+    	return false;
+    }
 
 
     /**
@@ -150,7 +166,13 @@ var lib = lib || {};
         config = config || {};
         var list = [];
 
-        if(this.player){
+        if (this.player) {
+			
+        	if (this.player.isPlaying) {
+        		return;
+        	}
+
+        	this.player.play();
             return;
         }
 
@@ -229,42 +251,45 @@ var lib = lib || {};
 
             _s.canvas.trigger('prepare', [info]);
 
-            _s.player =  new Audio(info.previewurl);
-            _s.player.addEventListener('ended', function(){
-                play(i+1);
-                return;
-            });
 
-            _s.player.addEventListener('canplaythrough', function(){
-                _s.canvas.trigger('ready', [info]);
-                _s.player.play();
-                return;
-            });
+            _s.player = _s.createPlayer({
+            	data: info,
+            	list: list,
+            	listeners: {
+            		ended: function (e) {
+            			play(i + 1);
+            			return;
+            		},
+            		canplaythrough: function (e) {
+            			_s.canvas.trigger('ready', [info]);
+            			_s.player.play();
+            			return;
+            		},
+            		play: function (e) {
+            			_s.canvas.trigger('play', [info]);
+            			return;
+            		},
+            		timeupdate: function (e) {
+            			var ps = e.target;
+            			var per = (ps.currentTime / ps.duration);
 
-            _s.player.addEventListener('play', function(){
-                _s.canvas.trigger('play', [info]);
-                return;
-            });
-
-            _s.player.addEventListener('timeupdate', function(e){
-                var ps = e.target;
-                var per = (ps.currentTime / ps.duration);
-            
-                switch(dir){
-                    case 'r':
-                        p.scaleX = per;
-                        break;
-                    case 'l':
-                        p.scaleX = per * -1;
-                        break;
-                    case 'd':
-                        p.scaleY = per;
-                        break;
-                    case 'u':
-                        p.scaleY = per * -1;
-                        break;
-                }
-                return;
+            			switch (dir) {
+            				case 'r':
+            					p.scaleX = per;
+            					break;
+            				case 'l':
+            					p.scaleX = per * -1;
+            					break;
+            				case 'd':
+            					p.scaleY = per;
+            					break;
+            				case 'u':
+            					p.scaleY = per * -1;
+            					break;
+            			}
+            			return;
+            		}
+            	}
             });
             
             var p = ($.findChild('player', b));
@@ -305,6 +330,31 @@ var lib = lib || {};
 
 
 
+	/**
+	 * プレイヤーを作成
+	 */
+    lib.stage.prototype.createPlayer = function(config){
+    	config = config || {};
+    	var data = config.data || {};
+    	var list = config.list || [];
+    	var current = config.current || 0;
+
+    	var remain = list.length - current;
+
+    	var player = new Audio(data.previewurl);
+
+    	if (config.listeners) {
+    		$.each(config.listeners, function (k, v) {
+    			player.addEventListener(k, v);
+    		});
+    	}
+
+    	return player;
+    }
+
+
+
+
     /**
      * セレクトされてたものをクリア 
      */
@@ -314,6 +364,12 @@ var lib = lib || {};
             this.player.pause();
             delete this.player;
             this.player = null;
+        }
+
+    	//ブロックが表示されている場合
+        if (this.block) {
+        	this.main.removeChild(this.block);
+        	this.block = null;
         }
 
         $.each(this.box, function(k, v){
@@ -327,6 +383,9 @@ var lib = lib || {};
 
 
 
+	/**
+	 * ハイライトさせる
+	 */
     lib.stage.prototype.hilight = function(id, sel)
     {
         var bx = $.findChild('selector', this.box[id]);
@@ -446,11 +505,12 @@ var lib = lib || {};
 
 
 
+
     /**
      * JSONをロード 
      */
     lib.stage.prototype.load = function(config){
-        config = config || {};
+        config = config || (this.config || {});
         var total = config.total ? config.total : Math.ceil(this.stagey / this.w) * (this.count + 1);
 
         if(!config.url){
@@ -484,6 +544,28 @@ var lib = lib || {};
             },
             scope: this
         });
+
+        this.config = config || {};
+        return;
+    }
+
+
+
+	/**
+	 * ブロックのアンロード
+	 */
+    lib.stage.prototype.unload = function (config) {
+    	config = config || {};
+    	var _s = this;
+
+    	this.clear();
+    	this.main.removeAllChildren();
+
+    	this.box = {};
+    	this.selectbox = {};
+    	this.boxinfo = {};
+
+    	return true;
     }
 
 
@@ -729,6 +811,8 @@ var lib = lib || {};
             return;
         });
 
+        _currentStage = null;
+        return;
     } 
 
 
@@ -740,11 +824,25 @@ var lib = lib || {};
         config = config || {};
 
         this.canvas.show();
+
+        _currentStage = this;
         return;
     }
 
 
+
+	/**
+	 * 現在アクティブなステージを返却
+	 */
+    var _currentStage = null;
+    lib.stage.prototype.getCurrentStage = function () {
+    	return _currentStage;
+    }
+
+
+
 })();
+
 
 
 Array.prototype.shuffle = function(){

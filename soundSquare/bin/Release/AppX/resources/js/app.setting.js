@@ -1,4 +1,4 @@
-var app = app || {};
+﻿var app = app || {};
 app.setting = {};
 
 
@@ -14,7 +14,7 @@ app.setting = {};
         if(!cn){
             cn = app.setting.create(config);
             cn.appendTo($(document.body));
-            cn.animate({top: 0, left: app.config.screenWidth}, 0);
+            cn.css('top', 0).css('left', app.config.screenWidth);
         }
 
         //ログインしているか、していないかで出し分け
@@ -24,6 +24,7 @@ app.setting = {};
             cn.trigger('logout');
         }
 
+		//透明のモーダルウィンドウを表示
         var m = app.modal.show({
             color: 'transparent'
         });
@@ -32,7 +33,7 @@ app.setting = {};
             app.setting.hide();
             return;
         });
-        cn.animate({top: 0, left: app.config.screenWidth - cn.width()}, 100);
+        cn.animate({top: 0, left: app.config.screenWidth - cn.width()}, 200);
         return;
     }
 
@@ -67,7 +68,8 @@ app.setting = {};
         }
 
         var p = {
-            about: 'このサービスについて',
+        	about: 'このサービスについて',
+			privacy: 'プライバシーポリシー',
             invite: '友達を誘う',
             logout: 'ログアウト',
             register: '登録/ログイン'
@@ -102,9 +104,13 @@ app.setting = {};
 
                     case 'about':
                         app.modal.window({
-                            tpl: $('#about')
+                            tpl: $('#about-win')
                         });
                         break;
+
+                	case 'privacy':
+                		window.open(app.config.privacyurl);
+                		break;
                 }
             });
         });
@@ -141,6 +147,7 @@ app.setting = {};
             });
             
             $('#about', bd).show();
+            $('#privacy', bd).show();
             $('#invite', bd).show();
             $('#logout', bd).show();
             return;
@@ -155,6 +162,7 @@ app.setting = {};
             });
 
             $('#about', bd).show();
+            $('#privacy', bd).show();
             $('#register', bd).show();
             return;
         });

@@ -1,4 +1,4 @@
-var app = app || {};
+﻿var app = app || {};
 app.modal = {};
 
 
@@ -20,7 +20,10 @@ app.modal = {};
 
         base = app.modal.create(); 
 
-        if(config.color){
+        if(config.color === "transparent"){
+        	base.css('background-color', '#FFF');
+        	base.css('opacity', .01);
+        }else if(config.color){
             base.css('background-color', config.color);
         }else{
             base.css('background-color', '#000');
@@ -100,7 +103,7 @@ app.modal = {};
                 var inner = $(
                     '<div style="text-align: center; margin: 0 auto;"/>'
                 );
-                inner.width(300);
+                inner.width(config.width || 300);
                 $(config.tpl).clone().appendTo(inner);
 
                 inner.appendTo(base);

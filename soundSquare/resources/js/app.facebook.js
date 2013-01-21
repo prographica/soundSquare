@@ -1,32 +1,47 @@
-var app = app || {};
+﻿var app = app || {};
 app.facebook = {};
 
 
 (function(){
 
-    var login = null;
 
-    var appid = null;
-    var perm = null;
+	app.facebook.islogin = null;
 
+    app.facebook.config = {};
+    app.facebook.appid = null;
+    app.facebook.perm = null;
+    app.facebook.token = null;
+    app.facebook.expires = null;
 
+    app.facebook._setParams = function (config) {
+    	config = config || {};
+
+    	app.facebook.config = config || {};
+    	app.facebook.appid = config.appid;
+    	app.facebook.perm = config.permission;
+    	app.facebook.token = config.token || null;
+    	app.facebook.expires = config.expires || null;
+
+    	return;
+    }
 
     /**
      * SDKの実行等 
      */
     app.facebook.init = function(config){
-        config = config || {};
-        appid = config.appid;
-        perm = config.permission;
+    	config = config || {};
+
+    	app.facebook._setParams(config);
 
         //javascriptSDKがロード完了したら呼び出し
         window.fbAsyncInit = function(){
-            FB.init({
-                appId  : appid,
-                status : true, // ステータスをチェックする。
-                cookie : true, //クッキーを使えるようにする。
-                xfbml  : true  //XFBMLを使えるようにする。
-            });
+
+        	FB.init({
+        		appId: app.facebook.appid,
+        		status: true, // ステータスをチェックする。
+        		cookie: true, //クッキーを使えるようにする。
+        		xfbml: true  //XFBMLを使えるようにする。
+        	});
 
             app.facebook.getStatus({
                 callback: function(res){
@@ -58,7 +73,7 @@ app.facebook = {};
         config = config || {};
         
         FB.getLoginStatus(function(res){
-            login = res;
+            app.facebook.islogin = res;
             
             if(!$.isFunction(config.callback)){
                 return;
@@ -85,7 +100,7 @@ app.facebook = {};
 
             config.callback.call(config.scope || this, res);
             return;
-        },{scope: perm});
+        },{scope: app.facebook.perm});
     }
 
 

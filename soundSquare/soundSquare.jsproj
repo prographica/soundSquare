@@ -49,8 +49,9 @@
     <DefaultLanguage>ja-JP</DefaultLanguage>
     <PackageCertificateKeyFile>soundSquare_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
-    <AppxPackageDir>\\psf\Home\Desktop\</AppxPackageDir>
+    <AppxPackageDir>C:\Users\prographica\Visual Studio 2012\Projects\soundSquare\soundSquare\AppPackage\</AppxPackageDir>
     <PackageCertificateThumbprint>721369487F89CA35986F1C3B5D22F073D34E0FFD</PackageCertificateThumbprint>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
@@ -72,9 +73,9 @@
     <Content Include="js\lib.stage.js" />
     <Content Include="js\app.loader.js" />
     <Content Include="js\app.appbar.js" />
-    <Content Include="js\index.js" />
     <None Include="soundSquare_StoreKey.pfx" />
     <None Include="Package.StoreAssociation.xml" />
+    <Content Include="js\index.js" />
     <Content Include="resources\css\general.css" />
     <Content Include="resources\images\appbar_arrow_right.png" />
     <Content Include="resources\images\arrow_right.png" />
@@ -100,22 +101,14 @@
     <Content Include="resources\js\app.tutorial.js" />
     <Content Include="resources\js\dateformat.js" />
     <Content Include="resources\js\easeljs\lib\easeljs-0.5.0.min.js" />
-    <Content Include="resources\js\easeljs\lib\easeljs-NEXT.min.js" />
     <Content Include="resources\js\easeljs\lib\movieclip-0.5.0.min.js" />
-    <Content Include="resources\js\easeljs\lib\README.txt" />
     <Content Include="resources\js\index.js" />
-    <Content Include="resources\js\jquery-1.8.2.min.js" />
     <Content Include="resources\js\jquery.activity-indicator-1.0.0.min.js" />
     <Content Include="resources\js\jquery.easing-1.3.js" />
     <Content Include="resources\js\jquery.extend.js" />
     <Content Include="resources\js\jquery.transit.js" />
     <Content Include="resources\js\lib.core.js" />
     <Content Include="resources\js\lib.stage.js" />
-    <Content Include="resources\js\soundjs\lib\README.txt" />
-    <Content Include="resources\js\soundjs\lib\soundjs-0.3.0.min.js" />
-    <Content Include="resources\js\soundjs\lib\soundjs-NEXT.min.js" />
-    <Content Include="resources\js\soundjs\lib\soundjs.flashplugin-0.3.0.min.js" />
-    <Content Include="resources\js\soundjs\lib\soundjs.flashplugin-NEXT.min.js" />
     <Content Include="resources\js\tweenjs\lib\tweenjs-0.3.0.min.js" />
     <None Include="soundSquare_TemporaryKey.pfx" />
   </ItemGroup>

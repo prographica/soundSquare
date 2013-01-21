@@ -1,4 +1,4 @@
-var app = app || {};
+﻿var app = app || {};
 app.ajax = {};
 
 
@@ -37,7 +37,10 @@ app.ajax = {};
                 config.success.apply(config.scope || this, [res]);
                 return;
             },
-            error: function(){
+            error: function () {
+
+				//TODO エラーを出力
+
                 if(!$.isFunction(config.failure)) return;
                 config.failure.apply(config.scope || this, [{success: false}]);
                 return;

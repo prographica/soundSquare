@@ -1,4 +1,4 @@
-createjs.DisplayObject.suppressCrossDomainErrors = true;
+﻿createjs.DisplayObject.suppressCrossDomainErrors = true;
 createjs.Ticker.setFPS(60);
 
 $(document).ready(function(){

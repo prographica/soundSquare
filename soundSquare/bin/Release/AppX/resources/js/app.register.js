@@ -1,4 +1,4 @@
-var app = app || {};
+﻿var app = app || {};
 app.register = {};
 
 
@@ -107,7 +107,10 @@ app.register = {};
     /**
      * ログイン後・継続ログインしている場合に実行
      */
-    app.register.complete = function(res){
+    app.register.complete = function (res) {
+
+    	console.log(res);
+
         app.ajax.request({
             url: app.config.apiurl + "/index.php/user/me",
             success: function(res){
@@ -149,7 +152,7 @@ app.register = {};
     app.register.create = function(config){
         config = config || {};
 
-        var r = $('#register').appendTo($(document.body));
+        var r = $('#register-win').appendTo($(document.body));
         
         $('#button', $(r)).on('click', function(e){
 

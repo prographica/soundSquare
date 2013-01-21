@@ -1,4 +1,4 @@
-/*
+﻿/*
 --------------------------------------------------------
 dateformat.js - Simple date formatter
 Version 1.1 (Update 2008/04/02)

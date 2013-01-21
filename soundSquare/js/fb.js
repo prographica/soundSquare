@@ -1,4 +1,4 @@
-(function() {
+﻿(function() {
     
     var FB = (function() {
 
@@ -14,6 +14,8 @@
             , parseOAuthApiResponse
             , setAccessToken
             , getAccessToken
+            , setAccessTokenExpires
+            , getAccessTokenExpires
             , parseSignedRequest
             , base64UrlDecode
             , log
@@ -21,7 +23,8 @@
             , options
             , METHODS = ['get', 'post', 'delete', 'put']
             , opts = {
-                'accessToken': null
+            	'accessToken': null
+				, 'expires': null
                 , 'appId': null
                 , 'appSecret': null
                 , 'timeout': null
@@ -94,7 +97,7 @@
 
 
         init = function (config) {
-            config = config || {};
+        	config = config || {};
             options(config);
         };
 
@@ -112,8 +115,6 @@
                     + '&scope=' + encodeURIComponent(config.scope)
                     + '&redirect_uri=' + encodeURIComponent(redirectUri)
                     + '&client_id=' + FB.options('appId');
-
-            console.log(loginUrl);
 
             try {
 
@@ -138,19 +139,20 @@
                             return;
                         }
 
-                        // we now have the access token,
-
+                    	// we now have the access token,
                         // set it as the default access token.
                         FB.setAccessToken(qs.access_token);
 
-                        console.log(qs.access_token);
-
                         // save it in local storage so can access it later
                         localStorage.setItem('fb_access_token', FB.getAccessToken());
+                        localStorage.setItem('fb_access_token_expires', qs.expires_in);
 
                         // now navigate to home page
                         if (callback) {
-                            callback.call(this);
+                        	callback.apply(this, [{
+                        		success: true,
+                        		access_token: FB.getAccessToken()
+                        	}]);
                         }
 
                     }, function error(err) {
@@ -452,6 +454,14 @@
             options({ 'accessToken': accessToken });
         };
 
+        getAccessTokenExpires = function () {
+        	return options('expires');
+        };
+
+        setAccessTokenExpires = function (expires) {
+        	options({ 'expires': expires });
+        };
+
         /**
          *
          * @access public
@@ -550,6 +560,8 @@
               api: api
             , getAccessToken: getAccessToken
             , setAccessToken: setAccessToken // this method does not exist in fb js sdk
+            , getAccessTokenExpires: getAccessTokenExpires
+            , setAccessTokenExpires: setAccessTokenExpires // this method does not exist in fb js sdk
             , parseSignedRequest: parseSignedRequest // this method does not exist in fb js sdk
             , options: options // this method does not exist in the fb js sdk
             , version: version // this method does not exist in the fb js sdk

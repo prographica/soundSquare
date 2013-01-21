@@ -1,5 +1,8 @@
+﻿var app = app || {};
+
 createjs.DisplayObject.suppressCrossDomainErrors = true;
 createjs.Ticker.setFPS(60);
+
 
 $(document).ready(function(){
 
@@ -25,8 +28,8 @@ $(document).ready(function(){
             //初期化して認証を通して実行
             callback: function(res){
 
-                if(res.status === 'connected'){
-                    app.register.complete(res);
+            	if (res.status === 'connected') {
+            		app.register.complete(res);
                     return;
                 }
 

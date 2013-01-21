@@ -1,4 +1,4 @@
-var app = app || {};
+﻿var app = app || {};
 app.register = {};
 
 
@@ -107,10 +107,13 @@ app.register = {};
     /**
      * ログイン後・継続ログインしている場合に実行
      */
-    app.register.complete = function(res){
+    app.register.complete = function (res) {
+
         app.ajax.request({
             url: app.config.apiurl + "/index.php/user/me",
             success: function(res){
+
+            	console.dir(res);
 
                 if(!res.success || !res.result){
                     delete user.me;
@@ -135,6 +138,10 @@ app.register = {};
                 //ログインした状態に
                 app.titlebar.login();
                 return;
+            },
+            failure: function () {
+            	app.titlebar.notlogin();
+            	return;
             }
         });
     

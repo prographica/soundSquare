@@ -21,6 +21,16 @@
 
 
 
+	/**
+	 * サムネイルを取得
+	 */
+    lib.stage.prototype.getThumbnail = function () {
+		
+    }
+
+
+
+
     lib.stage.prototype.createPlayer = function (config)
     {
         config = config || {};
@@ -34,28 +44,35 @@
             mediaControl.removeEventListener(k, v);
         });
 
+    	//メタデータの削除
+        mediaControl.artistName = data.artist_name || "";
+        mediaControl.trackName = data.name || "";
+        //mediaControl.albumArt = data.imageurl || "";
+
         listeners = {
             playpressed: function () {
                 player.play();
-                Windows.Media.MediaControl.isPlaying = true;
+                mediaControl.isPlaying = true;
             },
 
             playpausetogglepressed: function () {
                 if (!player.paused) {
                     player.pause();
-                    Windows.Media.MediaControl.isPlaying = false;
+                    mediaControl.isPlaying = false;
                 } else {
                     player.play();
-                    Windows.Media.MediaControl.isPlaying = true;
+                    mediaControl.isPlaying = true;
                 }
             },
 
             stoppressed: function () {
+            	player.pause();
+            	mediaControl.isPlaying = false;
             },
 
             pausepressed: function () {
                 player.pause();
-                Windows.Media.MediaControl.isPlaying = false;
+                mediaControl.isPlaying = false;
             }
         }
 
